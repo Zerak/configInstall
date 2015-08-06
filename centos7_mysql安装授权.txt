@@ -12,6 +12,7 @@
 // 授权
 >grant all privileges on *.* to 'root'@'%' identified by 'txtj' with grant option;
 >flush privileges;
->exit;
+>exit;op
 
 
+ps:连接远程有问题、检查服务器防火墙设置。service iptables stop

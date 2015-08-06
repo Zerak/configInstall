@@ -1,16 +1,28 @@
-下载源码解压到/data/go
-cd /data/go
+下载源码解压到/opt/go
+cd /opt/go
 
-//安装go
+//安装go(linux不用安装)
 ./src/all.bsh
 
 //配置环境变量
 vim /etc/profile
 
 //配置gohome(运行go命令的环境变量)
-export GOROOT=/data/go
+export GOROOT=/opt/go
 export PATH=$PATH:$GOROOT:$GOROOT/bin
 
 // 配置gopath(即工作空间，之后的go get命令将都会安装到gopath工作空间的src目录下)
-export GOPATH=/data/webinterface
+export GOPATH=/data/webserver/txweb/TX_Cloud
 export PATH=$PATH:$GOPATH:$GOPATH/bin
+
+// 配置环境变量后使环境变量生效
+source /etc/profile
+
+//安装beego
+go get github.com/astaxie/beego
+
+//安装bee
+go get github.com/beego/bee
+
+// golune
+pdo_mysql.default_socket = /var/lib/mysql/mysql.sock
