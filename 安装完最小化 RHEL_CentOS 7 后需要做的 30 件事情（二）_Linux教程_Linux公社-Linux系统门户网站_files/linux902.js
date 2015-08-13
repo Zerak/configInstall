@@ -1,0 +1,1 @@
+﻿document.writeln("<a href=\"http://edu.51cto.com/training/training_id-8.html?centoscn-training-8\" target=\"_blank\"><img src=\"http://www.linuxidc.com/linuxfile/51cto.jpg\" alt=\"\" width=\"300\" height=\"250\" /></a>");

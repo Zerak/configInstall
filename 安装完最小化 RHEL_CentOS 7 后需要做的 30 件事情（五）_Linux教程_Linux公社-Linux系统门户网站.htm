@@ -1,0 +1,411 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><script src="http://bdimg.share.baidu.com/static/api/js/trans/logger.js?v=60603cb3.js" type="text/javascript"></script>
+<title>安装完最小化 RHEL/CentOS 7 后需要做的 30 件事情（五）_Linux教程_Linux公社-Linux系统门户网站</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="icon" href="http://www.linuxidc.com/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://www.linuxidc.com/favicon.ico" type="image/x-icon">
+<meta name="description" content="安装完最小化 RHEL/CentOS 7 后需要做的 30 件事情（五）">
+<meta name="keywords" content="CentOS 7,安装完最小化 RHEL/CentOS 7 后需要做的 30 件事情（五）,Linux,Linux教程,Linux系统,Linux安装,Ubuntu,Fedora,RedHat,SUSE,CentOS,红旗Linux">
+<link rel="canonical" href="http://www.linuxidc.com/Linux/2015-05/116917.htm">
+<meta name="generator" content="Linux公社">
+<meta name="generator" content="Linux">
+<link rel="stylesheet" href="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/style.css" type="text/css">
+<meta name="generator" content="专业的Linux网站">
+<script src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/s.js" charset="utf-8"></script><script type="text/javascript" src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/jquery.js"></script>
+<script type="text/javascript" src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/iwms.js"></script>
+<script type="text/javascript">iwms.urlPrefix="../../";</script>
+
+<script type="text/javascript" src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/show.js"></script>
+<script src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/share.js"></script><link href="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/share_style0_24.css" rel="stylesheet"><style>html #hm_t_undefined .hm-t-go-top {position:fixed;right:2px;bottom:2px;z-index:99998;cursor:pointer;width:40px;height:37px!important;text-align:center;white-space:normal;font-size:14px;line-height:17px;padding-top:3px;color:#fff;background:#404040;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEkAAAAXCAYAAABH92JbAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2hpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDowMjgwMTE3NDA3MjA2ODExODA4M0UyNDA4ODdDRTZBQiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpBQjc5RkRFNkI5ODMxMUUzQkZGNDhENEJFQjM2OTcyRiIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpBQjc5RkRFNUI5ODMxMUUzQkZGNDhENEJFQjM2OTcyRiIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChNYWNpbnRvc2gpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MDI4MDExNzQwNzIwNjgxMTgwODNFMjQwODg3Q0U2QUIiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MDI4MDExNzQwNzIwNjgxMTgwODNFMjQwODg3Q0U2QUIiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5HPYM5AAACC0lEQVR42uyZTSgEYRjH90NoqaVcpDblvKW2XOSkNh8H5Yac9sBBDqQokiJKSMpNTi5OPo6Ktsgu67JcUHIXWfK1u3b8Xx6Zxuzu+64dM83uv34zNfu8b8/8Z+d5P8YqSZLFJNLsRmyWvIRMKgVD4AhEwA3YAV0pzGwEqyAEwmAddIICHe7FqhnsdQM14FxKLj+ooFiGE2ykiD8GVbJ4I1ELAnTmasMODnAhpVcIFIMicMgRH6Z4IxnUAh4pP3Zu5TVpUOLXDJgWiB8wkEF9IK7IL07X05oUFLjpZ4JXQQOYYwfzafJcoDjVPqw43KE4lWtUTF+AQ8eBqQSsgTaO2E0apJ7URrdCDZOM62hQJfBzGmShOD+1+2XSiYaJ7utkkBsEgEewnYfauZUmzWmU6DuY0sEgLzgArgzbu6i992cu/1WclqXsa1iHIt0DYlnKP0b9fRZu5pWdZs7dWXqa7B80+s//oF5aMSjflGqBPq5BQnFtVv4UmGHjIPEH96PAZ6C5kVMwf6daPzbFKnqCqvx9Bk/yFjSBFTMvcL+1DerAmUA/p9Rm1+y7AHJdgnqwx9EHm1s0gKtc2CpR6gE00/ZHMm3RKxbJlf0kNb2BDrCk8hsbDdvBay5tuiUTGxL7waTs2iLw0YTR9BLZQRwDUVqwjuTS9q3VRB8C1OQUnM6UqdXX/IcADn0IMADs2AqDOPSutQAAAABJRU5ErkJggg==) no-repeat -42px center #666;*background-image:url(http://ecma.bdimg.com/holmes/t-popup-icons-png8.png);_position:absolute;_top:expression(eval(document.documentElement.scrollTop+(document.documentElement.clientHeight||document.body.clientHeight)-this.offsetHeight-2));}</style></head>
+<body>
+<div class="topBar">
+	<div class="twidth">
+	
+	<div style="float:right">
+		<script type="text/javascript" src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/language.js"></script> <a title="點擊以繁體中文方式浏覽" href="javascript:StranBody()" id="StranLink">繁體</a>
+	</div>
+	
+	<div id="topUser">你好，游客 <a href="#" onclick="iwms.logPop()">登录</a>
+	<a href="http://www.linuxidc.com/memberreg.aspx" rel="nofollow">注册</a>
+	<a href="http://www.linuxidc.com/search.aspx" rel="nofollow">搜索</a>
+	</div>
+	</div>
+</div>
+<div class="twidth">
+<div id="sitehead">
+<div class="l"></div>
+<div class="r"></div>
+<div class="m">
+	<table width="100%">
+	<tbody><tr align="center"><td width="160">
+	<a href="http://www.linuxidc.com/"><img style="filter: chroma(color=#FFFFFF);" src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/logo.jpg" alt="Linux公社" height="53" border="0" width="155"></a>
+	</td><td>
+	<div align="center"><script src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/linux.js" type="text/javascript" language="javaScript"></script></div>
+	</td>
+	</tr></tbody></table>
+</div>
+</div>
+<div id="navbar">
+<div class="l"></div>
+<div class="r"></div>
+<div class="m">
+	<a href="http://www.linuxidc.com/index.htm" class="first">首页</a><a href="http://www.linuxidc.com/it/">Linux新闻</a><a href="http://www.linuxidc.com/Linuxit/" class="thisclass">Linux教程</a><a href="http://www.linuxidc.com/MySql/">数据库技术</a><a href="http://www.linuxidc.com/RedLinux/">Linux编程</a><a href="http://www.linuxidc.com/Apache/">服务器应用</a><a href="http://www.linuxidc.com/Unix/">Linux安全</a><a href="http://www.linuxidc.com/download/">Linux下载</a><a href="http://www.linuxidc.com/Linuxrz/">Linux认证</a><a href="http://www.linuxidc.com/theme/">Linux主题</a><a href="http://www.linuxidc.com/Linuxwallpaper/">Linux壁纸</a><a href="http://www.linuxidc.com/linuxsoft/">Linux软件</a><a href="http://www.linuxidc.com/digi/">数码</a><a href="http://www.linuxidc.com/mobile/">手机</a><a href="http://www.linuxidc.com/diannao/">电脑</a>
+
+</div>
+</div>
+
+<div id="navsub">
+<div class="l"></div>
+<div class="r"></div>
+<div class="m">
+	<a href="http://www.linuxidc.com/index.htm">首页</a> → <a href="http://www.linuxidc.com/Linuxit/">Linux教程</a>
+</div>
+</div>
+<div class="linuxe1"><script type="text/javascript" language="javaScript" src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/linuxe1.htm"></script></div>
+<div class="linux1"><script type="text/javascript" language="javaScript" src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/linux1.htm"></script></div>
+<div class="linuxa"><script type="text/javascript" language="javaScript" src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/linuxa.htm"></script></div>
+<div class="linuxa1"><script type="text/javascript" language="javaScript" src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/linuxa1.htm"></script></div>
+<table id="middle" style="table-layout:fixed" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr valign="top"><td>
+
+	<div class="mframe mR">
+	<div class="tl"></div>
+	<div class="tr"></div>
+	<div class="tm">
+		<div class="moreR">
+			背景：<script type="text/javascript">WriteBg()</script><img src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/b.gif" style="cursor:pointer;width:7px;height:6px;border:1px solid #999;background:#EDF0F5" alt="#EDF0F5" onclick='ContentBg("#EDF0F5")'> <img src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/b.gif" style="cursor:pointer;width:7px;height:6px;border:1px solid #999;background:#FAFBE6" alt="#FAFBE6" onclick='ContentBg("#FAFBE6")'> <img src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/b.gif" style="cursor:pointer;width:7px;height:6px;border:1px solid #999;background:#FFF2E2" alt="#FFF2E2" onclick='ContentBg("#FFF2E2")'> <img src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/b.gif" style="cursor:pointer;width:7px;height:6px;border:1px solid #999;background:#FDE6E0" alt="#FDE6E0" onclick='ContentBg("#FDE6E0")'> <img src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/b.gif" style="cursor:pointer;width:7px;height:6px;border:1px solid #999;background:#F3FFE1" alt="#F3FFE1" onclick='ContentBg("#F3FFE1")'> <img src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/b.gif" style="cursor:pointer;width:7px;height:6px;border:1px solid #999;background:#DAFAF3" alt="#DAFAF3" onclick='ContentBg("#DAFAF3")'> <img src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/b.gif" style="cursor:pointer;width:7px;height:6px;border:1px solid #999;background:#EAEAEF" alt="#EAEAEF" onclick='ContentBg("#EAEAEF")'> <img src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/b.gif" style="cursor:pointer;width:7px;height:6px;border:1px solid #999;background:#FFF" alt="默认" onclick='ContentBg("")'> 
+		</div>
+		<span class="tt">阅读新闻</span>
+	</div>
+	<div class="wrapper">
+	<div class="ml"></div>
+	<div class="mr"></div>
+	<div class="mm" id="bodyTd">
+		<div id="printBody" style="word-break:break-all;">
+			<div style="text-align:center"><h1 class="aTitle">安装完最小化 RHEL/CentOS 7 后需要做的 30 件事情（五）</h1></div>
+			
+			<table align="center" width="97%">
+				<tbody><tr>
+				<td width="140">[日期：2015-05-02]</td>
+				<td align="center">来源：Linux中国&nbsp;
+				作者：Linux</td>
+				<td align="right" width="160">[字体：<a href="javascript:ContentSize(16)">大</a> <a href="javascript:ContentSize(0)">中</a> <a href="javascript:ContentSize(12)">小</a>]
+				</td></tr>
+			</tbody></table>
+<div id="li_all">
+<div id="li_1"><script type="text/javascript" src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/linux201.htm"></script></div>
+<div id="li_2"><script type="text/javascript" src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/linux2.js"></script></div>
+</div>
+			<div style="overflow-x: hidden; word-break: break-all;" id="content"><div class="linux19"><script type="text/javascript" language="javaScript" src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/linux19.htm"></script></div> <h4 id="toc_1">安装完最小化 RHEL/<a href="http://www.linuxidc.com/topicnews.aspx?tid=14" target="_blank" title="CentOS">CentOS</a> 7 后需要做的 30 件事情（五）</h4>
+<h4>25. 安装 Linux Malware Detect (LMD)</h4>
+<p>Linux Malware Detect (LMD) 是 GNU GPLv2 协议下发布的开源 Linux 恶意程序扫描器，它是特别为面临威胁的主机环境所设计的。LMD 完整的安装、配置以及使用方法可以查看：</p>
+<ul>
+<li><a href="http://www.linuxidc.com/Linux/2015-03/115620.htm">安装 LMD 并和 ClamAV 一起使用作为反病毒引擎</a>&nbsp; <a href="http://www.linuxidc.com/Linux/2015-03/115620.htm">http://www.linuxidc.com/Linux/2015-03/115620.htm</a></li>
+</ul>
+<h4 id="toc_2">26. 用 Speedtest-cli 测试服务器带宽</h4>
+<p>speedtest-cli 是用 python 写的用于测试网络下载和上传带宽的工具。关于 speedtest-cli 工具的完整安装和使用请阅读我们的文章<a href="http://www.linuxidc.com/Linux/2014-09/106454.htm">用命令行查看 Linux 服务器带宽</a>&nbsp; <a href="http://www.linuxidc.com/Linux/2014-09/106454.htm">http://www.linuxidc.com/Linux/2014-09/106454.htm</a></p>
+<h4 id="toc_3">27. 配置 Cron 任务</h4>
+<p>这是最广泛使用的软件工具之一。它是一个任务调度器，比如，现在安排一个以后可以自动运行的作业。它用于未处理记录的日志和维护，以及其它日常工作，比如常规备份。所有的调度都写在文件 /etc/crontab 中。</p>
+<p>crontab 文件包含下面的 6 个域：</p>
+<ol class="linenums">
+<li class="L0"><code><span class="pun">分</span><span class="pun">时</span><span class="pun">日期</span><span class="pun">月份</span><span class="pun">星期</span><span class="pun">命令</span></code></li>
+<li class="L1"><code><span class="pun">(</span><span class="lit">0</span><span class="pun">-</span><span class="lit">59</span><span class="pun">)</span><span class="pun">(</span><span class="lit">0</span><span class="pun">-</span><span class="lit">23</span><span class="pun">)</span><span class="pun">(</span><span class="lit">1</span><span class="pun">-</span><span class="lit">31</span><span class="pun">)</span><span class="pun">(</span><span class="lit">1</span><span class="pun">/</span><span class="pln">jan</span><span class="pun">-</span><span class="lit">12</span><span class="pun">/</span><span class="pln">dec</span><span class="pun">)</span><span class="pun">(</span><span class="lit">0</span><span class="pun">-</span><span class="lit">6</span><span class="pun">/</span><span class="pln">sun</span><span class="pun">-</span><span class="pln">sat</span><span class="pun">)</span><span class="typ">Command</span><span class="pun">/</span><span class="pln">script</span></code></li>
+</ol>
+<p><img style="cursor: pointer; display: block;" src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/150502084199221.jpg" alt="Crontab 域" vspace="5" width="581"></p>
+<p><em>Crontab 域</em></p>
+<p>要在每天 04:30 运行一个 cron 任务（比如运行 /home/$USER/script.sh）。</p>
+<ol class="linenums">
+<li class="L0"><code><span class="pun">分</span><span class="pun">时</span><span class="pun">日期</span><span class="pun">月份</span><span class="pun">星期</span><span class="pun">命令</span></code></li>
+<li class="L1"><code><span class="lit">30</span><span class="lit">4</span><span class="pun">*</span><span class="pun">*</span><span class="pun">*</span><span class="pln"> speedtest</span><span class="pun">-</span><span class="pln">cli</span></code></li>
+</ol>
+<p>就把下面的条目增加到 crontab 文件 ‘/etc/crontab/’。</p>
+<ol class="linenums">
+<li class="L0"><code><span class="lit">30</span><span class="lit">4</span><span class="pun">*</span><span class="pun">*</span><span class="pun">*</span><span class="str">/home/</span><span class="pln">$user</span><span class="pun">/</span><span class="pln">script</span><span class="pun">.</span><span class="pln">sh</span></code></li>
+</ol>
+<p>把上面一行增加到 crontab 之后，它会在每天的 04:30 am 自动运行，输出取决于脚本文件的内容。另外脚本也可以用命令代替。关于更多 cron 任务的例子，可以阅读<a href="http://www.tecmint.com/11-cron-scheduling-task-examples-in-linux/">Linux 上的 11 个 Cron 任务例子</a></p>
+<h4 id="toc_4">28. 安装 Owncloud</h4>
+<p>Owncloud 是一个基于 HTTP 的数据同步、文件共享和远程文件存储应用。更多关于安装 owncloud 的内容，你可以阅读这篇文章：<a href="http://www.linuxidc.com/Linux/2014-01/95474.htm">在 Linux 上创建个人/私有云存储</a>&nbsp; <a href="http://www.linuxidc.com/Linux/2014-01/95474.htm">http://www.linuxidc.com/Linux/2014-01/95474.htm</a></p>
+<h4 id="toc_5">29. 启用 Virtualbox 虚拟化</h4>
+<p>虚拟化是创建虚拟操作系统、硬件和网络的过程，是当今最热门的技术之一。我们会详细地讨论如何安装和配置虚拟化。</p>
+<p>我们的最小化 CentOS 服务器是一个无用户界面服务器（LCTT 译注：无用户界面[headless]服务器指没有监视器和鼠标键盘等外设的服务器）。我们通过安装下面的软件包，让它可以托管虚拟机，虚拟机可通过 HTTP 访问。</p>
+<ol class="linenums">
+<li class="L0"><code><span class="com"># yum groupinstall 'Development Tools' SDL kernel-devel kernel-headers dkms</span></code></li>
+</ol>
+<p><img style="cursor: pointer; display: block;" src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/150502084199222.jpg" alt="安装开发工具" vspace="5" width="581"></p>
+<p><em>安装开发工具</em></p>
+<p>更改工作目录到 ‘/etc/yum.repos.d/’ 并下载 VirtualBox 库。</p>
+<ol class="linenums">
+<li class="L0"><code><span class="com"># wget -q http://download.virtualbox.org/virtualbox/debian/<a href="http://www.linuxidc.com/topicnews.aspx?tid=12" target="_blank" title="Oracle">Oracle</a>_vbox.asc</span></code></li>
+</ol>
+<p>安装刚下载的密钥。</p>
+<ol class="linenums">
+<li class="L0"><code><span class="com"># rpm --import oracle_vbox.asc</span></code></li>
+</ol>
+<p>升级并安装 VirtualBox。</p>
+<ol class="linenums">
+<li class="L0"><code><span class="com"># yum update &amp;&amp; yum install virtualbox-4.3</span></code></li>
+</ol>
+<p>下一步，下载和安装 VirtualBox 扩展包。</p>
+<ol class="linenums">
+<li class="L0"><code><span class="com"># wget http://download.virtualbox.org/virtualbox/4.3.12/Oracle_VM_VirtualBox_Extension_Pack-4.3.12-93733.vbox-extpack</span></code></li>
+<li class="L1"><code><span class="com"># VBoxManage extpack install Oracle_VM_VirtualBox_Extension_Pack-4.3.12-93733.vbox-extpack</span></code></li>
+</ol>
+<p><img style="cursor: pointer; display: block;" src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/150502084199223.jpg" alt="安装 VirtualBox 扩展包" vspace="5" width="581"></p>
+<p><em>安装 VirtualBox 扩展包</em></p>
+<p><img style="cursor: pointer; display: block;" src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/150502084199224.jpg" alt="正在安装 VirtualBox 扩展包" vspace="5" width="581"></p>
+<p><em>正在安装 VirtualBox 扩展包</em></p>
+<p>添加用户 ‘vbox’ 用于管理 VirtualBox 并把它添加到组 vboxusers 中。</p>
+<ol class="linenums">
+<li class="L0"><code><span class="com"># adduser vbox</span></code></li>
+<li class="L1"><code><span class="com"># passwd vobx</span></code></li>
+<li class="L2"><code><span class="com"># usermod -G vboxusers vbox</span></code></li>
+</ol>
+<p>安装 HTTPD 服务器。</p>
+<ol class="linenums">
+<li class="L0"><code><span class="com"># yum install httpd</span></code></li>
+</ol>
+<p>安装 PHP （支持 soap 扩展）。</p>
+<ol class="linenums">
+<li class="L0"><code><span class="com"># yum install php php-devel php-common php-soap php-gd</span></code></li>
+</ol>
+<p>下载 phpVirtualBox（一个 PHP 写的开源的 VirtualBox 用户界面）。</p>
+<ol class="linenums">
+<li class="L0"><code><span class="com"># wget http://sourceforge.net/projects/phpvirtualbox/files/phpvirtualbox-4.3-1.zip</span></code></li>
+</ol>
+<p>解压 zip 文件并把解压后的文件夹复制到 HTTP 工作目录。</p>
+<ol class="linenums">
+<li class="L0"><code><span class="com"># unzip phpvirtualbox-4.*.zip</span></code></li>
+<li class="L1"><code><span class="com"># cp phpvirtualbox-4.3-1 -R /var/www/html</span></code></li>
+</ol>
+<p>下一步，重命名文件 /var/www/html/phpvirtualbox/config.php-example 为 var/www/html/phpvirtualbox/config.php。</p>
+<ol class="linenums">
+<li class="L0"><code><span class="com"># mv config.php.example config.php</span></code></li>
+</ol>
+<p>打开配置文件并添加我们上一步创建的 ‘username ’ 和 ‘password’。</p>
+<ol class="linenums">
+<li class="L0"><code><span class="com"># vi config.php</span></code></li>
+</ol>
+<p>最后，重启 VirtualBox 和 HTTP 服务器。</p>
+<ol class="linenums">
+<li class="L0"><code><span class="com"># service vbox-service restart</span></code></li>
+<li class="L1"><code><span class="com"># service httpd restart</span></code></li>
+</ol>
+<p>转发端口并从一个有用户界面的服务器上访问它。</p>
+<ol class="linenums">
+<li class="L0"><code><span class="pln">http</span><span class="pun">:</span><span class="com">//192.168.0.15/phpvirtualbox-4.3-1/</span></code></li>
+</ol>
+<p><img style="cursor: pointer; display: block;" src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/150502084199225.png" alt="登录 PHP Virtualbox" vspace="5" width="581"></p>
+<p><em>登录 PHP Virtualbox</em></p>
+<p><img style="cursor: pointer; display: block;" src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/150502084199226.png" alt="PHP Virtualbox 面板" vspace="5" width="581"></p>
+<p><em>PHP Virtualbox 面板</em></p>
+<p><em><span style="font-size: small;"><strong>本文永久更新链接地址</strong></span>：<a href="http://www.linuxidc.com/Linux/2015-05/116917.htm">http://www.linuxidc.com/Linux/2015-05/116917.htm</a></em></p><a href="http://www.linuxidc.com/" target="_blank"><img src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/logo.gif" alt="linux" height="17" width="15"></a></div><a href="http://www.linuxidc.com/" target="_blank">
+<div class="linux301"><script type="text/javascript" src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/linux301.htm"></script></div>
+<div class="linux3"><script type="text/javascript" src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/linux3.js"></script></div>
+<div class="linux302"><script type="text/javascript" src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/linux302.htm"></script></div>		
+			
+			
+		</a></div><a href="http://www.linuxidc.com/" target="_blank">
+		</a><div style="padding:0 15px"><a href="http://www.linuxidc.com/" target="_blank">
+			</a><ul id="digg" class="digg"><a href="http://www.linuxidc.com/" target="_blank">
+				<li class="digg1">0</li>
+				</a><li class="digg2"><a href="http://www.linuxidc.com/" target="_blank"></a><a href="###" onclick="iwms.diggIt(this,iwms.aId)">顶一下</a></li>
+			</ul>	
+		</div>
+<div class="linuxfx"><script type="text/javascript" language="javaScript" src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/fx.js"></script><div data-bd-bind="1438928047265" class="bdsharebuttonbox bdshare-button-style0-24"><a class="bds_more" href="http://share.baidu.com/code#" data-cmd="more"></a><a title="分享到QQ空间" class="bds_qzone" href="http://share.baidu.com/code#" data-cmd="qzone"></a><a title="分享到新浪微博" class="bds_tsina" href="http://share.baidu.com/code#" data-cmd="tsina"></a><a title="分享到腾讯微博" class="bds_tqq" href="http://share.baidu.com/code#" data-cmd="tqq"></a><a title="分享到人人网" class="bds_renren" href="http://share.baidu.com/code#" data-cmd="renren"></a><a title="分享到百度新首页" class="bds_bdhome" href="http://share.baidu.com/code#" data-cmd="bdhome"></a><a title="分享到微信" class="bds_weixin" href="http://share.baidu.com/code#" data-cmd="weixin"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+</div>	
+<div class="linux8"><script type="text/javascript" language="javaScript" src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/linux8.js"></script></div>
+<div class="linux801"><script type="text/javascript" language="javaScript" src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/linux801.js"></script></div>
+		<div class="nearNews">
+			<div class="prevNews"><a href="http://www.linuxidc.com/Linux/2015-05/116907.htm">Linux远程登录访问Windows 7详细配置步骤</a></div>
+			<div class="nextNews"><a href="http://www.linuxidc.com/Linux/2015-05/116934.htm">Linux下Atom编辑器不支持中文解决方法</a></div>
+		</div>
+	</div>
+	</div>
+	<div class="bl"></div>
+	<div class="br"></div>
+	<div class="bm"></div>
+	</div>
+	
+	<div class="mframe mR">
+	<div class="tl"></div>
+	<div class="tr"></div>
+	<div class="tm">
+		<span class="tt">相关资讯</span> &nbsp; &nbsp; &nbsp;
+		<a href="http://www.linuxidc.com/search.aspx?where=nkey&amp;keyword=29811" target="_blank">CentOS 7</a>&nbsp; 
+	</div>
+	<div class="wrapper">
+	<div class="ml"></div>
+	<div class="mr"></div>
+	<div class="mm">
+		<table width="100%"><tbody><tr><td valign="top" width="50%"><ul class="nl"><li><a href="http://www.linuxidc.com/Linux/2015-05/117703.htm" target="_blank" title="CentOS 7的网络配置以及设置主机名和绑定IP的问题">CentOS 7的网络配置以及设置主���名</a>&nbsp; <span class="gray">(<span class="time">今 09:33</span>)</span></li>
+<li><a href="http://www.linuxidc.com/Linux/2015-05/116964.htm" target="_blank" title="安装完最小化 RHEL/CentOS 7 后需要做的 30 件事情（六）">安装完最小化 RHEL/CentOS 7 后需</a>&nbsp; <span class="gray">(05月03日)</span></li>
+<li><a href="http://www.linuxidc.com/Linux/2015-05/116904.htm" target="_blank" title="安装完最小化 RHEL/CentOS 7 后需要做的 30 件事情（三）">安装完最小化 RHEL/CentOS 7 后需</a>&nbsp; <span class="gray">(05月01日)</span></li>
+</ul></td><td valign="top" width="50%"><ul class="nl"><li><a href="http://www.linuxidc.com/Linux/2015-05/117628.htm" target="_blank" title="Linux系统入门学习：如何在VPS上安装和访问CentOS 7远程桌面">Linux系统入门学习：如何在VPS上安</a>&nbsp; <span class="gray">(05月17日)</span></li>
+<li><a href="http://www.linuxidc.com/Linux/2015-05/116905.htm" target="_blank" title="安装完最小化 RHEL/CentOS 7 后需要做的 30 件事情（四）">安装完最小化 RHEL/CentOS 7 后需</a>&nbsp; <span class="gray">(05月01日)</span></li>
+<li><a href="http://www.linuxidc.com/Linux/2015-04/116781.htm" target="_blank" title="安装完最小化 RHEL/CentOS 7 后需要做的 30 件事情（二）">安装完最小化 RHEL/CentOS 7 后需</a>&nbsp; <span class="gray">(04月28日)</span></li>
+</ul></td></tr></tbody></table>
+	</div>
+	</div>
+	<div class="bl"></div>
+	<div class="br"></div>
+	<div class="bm"></div>
+	</div>
+
+	<div class="mframe mR">
+	<div class="tl"></div>
+	<div class="tr"></div>
+	<div class="tm">
+		<span class="tt">图片资讯</span> &nbsp; &nbsp; &nbsp;
+	</div>
+	<div class="wrapper">
+	<div class="ml"></div>
+	<div class="mr"></div>
+	<div class="mm">
+<div class="imgList"><ul><li style="width:25%"><a href="http://www.linuxidc.com/Linux/2015-05/117628.htm" target="_blank" title="Linux系统入门学习：如何在VPS上安装和访问CentOS 7远程桌面"><img src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/150517141157021t.jpg" alt="Linux系统入门学习：如何在VPS上安装和访问CentOS 7远程桌面" height="90" width="120">Linux系统入门学习：</a></li><li style="width:25%"><a href="http://www.linuxidc.com/Linux/2015-05/116964.htm" target="_blank" title="安装完最小化 RHEL/CentOS 7 后需要做的 30 件事情（六）"><img src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/150503130810131t.jpg" alt="安装完最小化 RHEL/CentOS 7 后需要做的 30 件事情（六）" height="90" width="120">安装完最小化 RHEL/</a></li><li style="width:25%"><a href="http://www.linuxidc.com/Linux/2015-05/116905.htm" target="_blank" title="安装完最小化 RHEL/CentOS 7 后需要做的 30 件事情（四）"><img src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/150501203652311t.jpg" alt="安装完最小化 RHEL/CentOS 7 后需要做的 30 件事情（四）" height="90" width="120">安装完最小化 RHEL/</a></li><li style="width:25%"><a href="http://www.linuxidc.com/Linux/2015-05/116904.htm" target="_blank" title="安装完最小化 RHEL/CentOS 7 后需要做的 30 件事情（三）"><img src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/150501203416062t.jpg" alt="安装完最小化 RHEL/CentOS 7 后需要做的 30 件事情（三）" height="90" width="120">安装完最小化 RHEL/</a></li><li style="width:25%"><a href="http://www.linuxidc.com/Linux/2015-04/116781.htm" target="_blank" title="安装完最小化 RHEL/CentOS 7 后需要做的 30 件事情（二）"><img src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/150428121564191t.jpg" alt="安装完最小化 RHEL/CentOS 7 后需要做的 30 件事情（二）" height="90" width="120">安装完最小化 RHEL/</a></li><li style="width:25%"><a href="http://www.linuxidc.com/Linux/2015-04/116740.htm" target="_blank" title="安装完最小化 RHEL/CentOS 7 后需要做的 30 件事情（一）"><img src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/150427173461503t.jpg" alt="安装完最小化 RHEL/CentOS 7 后需要做的 30 件事情（一）" height="90" width="120">安装完最小化 RHEL/</a></li><li style="width:25%"><a href="http://www.linuxidc.com/Linux/2015-03/115619.htm" target="_blank" title="如何不用重启在CentOS 7/ RHEL 7虚拟机中添加一块新硬盘"><img src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/150331193276391t.jpg" alt="如何不用重启在CentOS 7/ RHEL 7虚拟机中添加一块新硬盘" height="90" width="120">如何不用重启在CentOS</a></li><li style="width:25%"><a href="http://www.linuxidc.com/Linux/2015-02/113854.htm" target="_blank" title="如何在RedHat/CentOS 7.x中使用nmcli管理网络"><img src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/150223113073691t.jpg" alt="如何在RedHat/CentOS 7.x中使用nmcli管理网络" height="90" width="120">如何在RedHat/CentOS </a></li></ul></div>
+	</div>
+	</div>
+	<div class="bl"></div>
+	<div class="br"></div>
+	<div class="bm"></div>
+	</div>
+	
+	
+	<div class="mframe mR">
+	<div class="tl"></div>
+	<div class="tr"></div>
+	<div class="tm">
+		<span class="tt">本文评论</span>
+		 	　　<a href="http://www.linuxidc.com/remark.aspx?id=116917" target="_blank">查看全部评论</a> <span class="gray">(0)</span>
+	</div>
+	<div class="wrapper">
+	<div class="ml"></div>
+	<div class="mr"></div>
+	<div class="mm">
+		<table style="margin:6px" width="100%">		
+		<tbody><tr><td width="100%">
+			<form action="" name="fmRemarkSt" onsubmit="return remark.post(this);">
+			<input disabled="disabled" value="1" name="face" type="hidden">
+			表情： <img src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/b.gif" alt="表情" class="face1" style="cursor:pointer;vertical-align:middle" onclick="remark.dispFace(this)" onmouseout="remark.hideFace()">
+			姓名： <input disabled="disabled" name="username" value="匿名" maxlength="15" style="width:60px" class="inputbg" type="text">
+			<input checked="checked" disabled="disabled" id="rmAnonymitySt" onclick="remark.anony(this)" type="checkbox"><label for="rmAnonymitySt">匿名</label>
+			字数 <input disabled="disabled" id="bodyLen" size="3" readonly="readonly" style="border-width:0;background:transparent;vertical-align:middle" value="0" type="text">
+			<br>
+			<textarea disabled="disabled" name="body" cols="40" rows="4" onkeydown="remark.dispLen(this)" onkeyup="remark.handle(event,this);remark.dispLen(this)" style="width:40em;height:100px;margin:3px 0;overflow-y:auto"></textarea>
+				<br>
+		　　　<input disabled="disabled" checked="checked" id="rmAgreeSt" type="checkbox"><label for="rmAgreeSt">同意评论声明</label>
+		　　　<button disabled="disabled" type="submit" style="width: 50px; padding: 0px;">请登录</button>
+			</form>
+		</td></tr>
+		<tr><td width="100%">
+			评论声明
+			<ul style="list-style-type:square;margin:5px 0 0 1em;padding:0">
+			<li>尊重网上道德，遵守中华人民共和国的各项有关法律法规</li>
+			<li>承担一切因您的行为而直接或间接导致的民事或刑事法律责任</li>
+			<li>本站管理人员有权保留或删除其管辖留言中的任意内容</li>
+			<li>本站有权在网站内转载或引用您的评论</li>
+			<li>参与本评论即表明您已经阅读并接受上述条款</li>
+			</ul>
+		</td></tr>
+		</tbody></table>
+		<script type="text/javascript" src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/remark.js"></script>
+		<script type="text/javascript">
+			remark.maxSize=500;
+			remark.minSize=2;
+			remark.sourceEle=$(document.fmRemarkSt).find("button").get(0);
+			iwms.vCode="D2BDA41E";
+			iwms.user.name.length==0 ? $i("rmAnonymitySt").click() : $i("rmAnonymitySt").form.username.value=iwms.user.name;
+		</script>
+		
+		<div class="reCont" id="reContainer"></div>
+	</div>
+	</div>
+	<div class="bl"></div>
+	<div class="br"></div>
+	<div class="bm"></div>
+	</div>
+	
+</td><td valign="top" width="300">
+<div class="linux901"><script type="text/javascript" language="javaScript" src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/linux901.js"></script></div>
+<div class="linux902"><script type="text/javascript" language="javaScript" src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/linux902.js"></script></div>
+<div class="linux903"><script type="text/javascript" language="javaScript" src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/linux903.js"></script></div>
+<div class="linux905"><script type="text/javascript" language="javaScript" src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/linux905.htm"></script></div>
+	
+	<div class="lframe">
+	<div class="tl"></div>
+	<div class="tr"></div>
+	<div class="tm">
+		<span class="tt">最新资讯</span>
+	</div>
+	<div class="wrapper">
+	<div class="ml"></div>
+	<div class="mr"></div>
+	<div class="mm">
+		<ul class="nl">
+<li><a href="http://www.linuxidc.com/Linux/2015-05/117703.htm" target="_blank" title="CentOS 7的网络配置以及设置主机名和绑定IP的问题">CentOS 7的网络配置以及设置主机名和绑定IP的问</a></li>
+<li><a href="http://www.linuxidc.com/Linux/2015-05/117702.htm" target="_blank">顺时针打印矩阵</a></li>
+<li><a href="http://www.linuxidc.com/Linux/2015-05/117701.htm" target="_blank">包含min函数的栈</a></li>
+<li><a href="http://www.linuxidc.com/Linux/2015-05/117700.htm" target="_blank">从上往下打印二叉树详述</a></li>
+<li><a href="http://www.linuxidc.com/Linux/2015-05/117699.htm" target="_blank">二叉搜索树的后序遍历序列详述</a></li>
+<li><a href="http://www.linuxidc.com/Linux/2015-05/117698.htm" target="_blank">二叉树中和为某一值的路径</a></li>
+<li><a href="http://www.linuxidc.com/Linux/2015-05/117697.htm" target="_blank">Zookeeper3.4.6的安装</a></li>
+<li><a href="http://www.linuxidc.com/Linux/2015-05/117696.htm" target="_blank" title="Hadoop2.x通过Zookeeper实现Namenode的HA方案及ResourceManager单点故障解决">Hadoop2.x通过Zookeeper实现Namenode的HA方案及</a></li>
+<li><a href="http://www.linuxidc.com/Linux/2015-05/117695.htm" target="_blank">Linux 两组信号对比</a></li>
+<li><a href="http://www.linuxidc.com/Linux/2015-05/117694.htm" target="_blank">Linux安装PostgreSQL 9.4</a></li>
+</ul>
+	</div>
+	</div>
+	<div class="bl"></div>
+	<div class="br"></div>
+	<div class="bm"></div>
+	</div>
+
+	<div class="lframe">
+	<div class="tl"></div>
+	<div class="tr"></div>
+	<div class="tm">
+		<span class="tt">本周热门</span>
+	</div>
+	<div class="wrapper">
+	<div class="ml"></div>
+	<div class="mr"></div>
+	<div class="mm">
+		<ul class="nl">
+<li><a href="http://www.linuxidc.com/Linux/2013-05/84014.htm" target="_blank">Android 手机上安装并运行 Ubuntu 12.04</a></li>
+<li><a href="http://www.linuxidc.com/Linux/2011-08/40437.htm" target="_blank">Linux常用命令大全</a></li>
+<li><a href="http://www.linuxidc.com/Linux/2014-04/100369.htm" target="_blank" class="highlight">Windows 7下硬盘安装Ubuntu 14.04图文教程</a></li>
+<li><a href="http://www.linuxidc.com/Linux/2014-10/108430.htm" target="_blank">Windows 7下硬盘安装Ubuntu 14.10图文教程</a></li>
+<li><a href="http://www.linuxidc.com/Linux/2012-05/59663.htm" target="_blank">Ubuntu 12.04和Windows 7双系统安装图解</a></li>
+<li><a href="http://www.linuxidc.com/Linux/2014-04/100645.htm" target="_blank">Ubuntu 14.04 LTS下安装Google Chrome浏览器</a></li>
+<li><a href="http://www.linuxidc.com/Linux/2010-04/25573.htm" target="_blank">Virtualbox虚拟机安装Ubuntu图文教程</a></li>
+<li><a href="http://www.linuxidc.com/Linux/2014-09/107092.htm" target="_blank">VMware安装RedHat6.4过程全程图解</a></li>
+<li><a href="http://www.linuxidc.com/Linux/2014-10/108402.htm" target="_blank">U盘安装Ubuntu 14.10</a></li>
+<li><a href="http://www.linuxidc.com/Linux/2011-12/48609.htm" target="_blank">虚拟机下安装BackTrack5 (BT5)教程及BT5汉化</a></li>
+</ul>
+	</div>
+	</div>
+	<div class="bl"></div>
+	<div class="br"></div>
+	<div class="bm"></div>
+	</div>
+	<div class="linuxy9"><script type="text/javascript" language="javaScript" src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/y9.js"></script></div>	
+</td></tr>
+</tbody></table>
+<div class="linux906"><script type="text/javascript" language="javaScript" src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/linux906.htm"></script></div>
+<div id="footer">
+<a href="http://www.linuxidc.com/aboutus.htm">Linux公社简介</a> - <a href="http://www.linuxidc.com/adsense.htm">广告服务</a> - <a href="http://www.linuxidc.com/sitemap.aspx">网站地图</a> - <a href="http://www.linuxidc.com/help.htm">帮助信息</a> - <a href="http://www.linuxidc.com/contactus.htm">联系我们</a><br>本站（LinuxIDC）所刊载文章不代表同意其说法或描述，仅为提供更多信息，也不构成任何建议。<br><script type="text/javascript" language="javaScript" src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/qq.js"></script>主编：漏网的鱼 (QQ:3165270) 联系邮箱:<img src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/email.png" alt="" height="20" width="138"> (如有版权及广告合作请联系)
+<br>
+<script type="text/javascript" language="javaScript" src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/foot.js"></script>本站带宽由[<a href="http://www.6688.cc/"><font color="red">6688.CC</font></a>]友情提供<br>关注Linux，关注LinuxIDC.com，<font color="red">请向您的QQ好友宣传LinuxIDC.com</font>，多谢支持！
+<br>Copyright © 2006-2015　<a href="http://www.linuxidc.com/">Linux公社</a>　All rights reserved 沪ICP备15008072号-1号
+	<script type="text/javascript">iwms.aId=116917;$(function(){iwms.imgCont=$i('content');iwms.imgResize();InitContStyle();iwms.getVars();})</script>
+	
+</div>
+</div>
+<script type="text/javascript" language="javaScript" src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/linuxren1.js"></script><script type="text/javascript">
+document.body.oncopy = function () { setTimeout( function () { var text = clipboardData.getData("text"); if (text) { text = text + "\r\n本篇文章来源于 Linux公社网站(www.linuxidc.com)  原文链接："+location.href; clipboardData.setData("text", text); } }, 100 ) }
+</script>
+
+<script type="text/javascript" language="javaScript" src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/linuxren2.htm"></script>
+<script type="text/javascript" language="javaScript" src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/linuxren3.js"></script><script src="%E5%AE%89%E8%A3%85%E5%AE%8C%E6%9C%80%E5%B0%8F%E5%8C%96%20RHEL_CentOS%207%20%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%2030%20%E4%BB%B6%E4%BA%8B%E6%83%85%EF%BC%88%E4%BA%94%EF%BC%89_Linux%E6%95%99%E7%A8%8B_Linux%E5%85%AC%E7%A4%BE-Linux%E7%B3%BB%E7%BB%9F%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99_files/h.js" type="text/javascript"></script>
+
+<div class="hm-t-container" id="hm_t_undefined"><div style="display: none;" class="hm-t-go-top"></div></div></body></html>

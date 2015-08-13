@@ -1,0 +1,2 @@
+yum intall gcc
+yum intall gcc-c++

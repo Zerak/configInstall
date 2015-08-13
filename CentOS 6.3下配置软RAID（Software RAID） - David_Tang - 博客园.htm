@@ -1,0 +1,731 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn"><head><script src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/analytics.js" async=""></script><script src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/postmoduletext.js" async=""></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>CentOS 6.3下配置软RAID（Software RAID） - David_Tang - 博客园</title>
+<link type="text/css" rel="stylesheet" href="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/bundle-SimpleBlue.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/mchina/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/mchina/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/mchina/wlwmanifest.xml">
+<script src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/gpt.js" type="text/javascript" async=""></script><script src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'mchina', cb_enable_mathjax=false;</script>
+<script src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/blog-common.js" type="text/javascript"></script>
+<script async="" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/pubads_impl_68r2.js"></script></head>
+<body>
+<a name="top"></a>
+<div id="page_begin_html"><!-- Baidu Button BEGIN -->
+
+
+
+<!-- Baidu Button END --></div><script>load_page_begin_html();</script>
+
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+		
+<!--done-->
+<div class="title"><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/mchina/">David Camp</a></div>
+<div class="subtitle"></div>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li id="nav_sitehome"><a id="MyLinks1_HomeLink" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li id="nav_myhome"><a id="MyLinks1_MyHomeLink" class="menu" href="http://www.cnblogs.com/mchina/">首页</a></li>
+<li id="nav_q"><a class="menu" href="http://q.cnblogs.com/">博问</a></li>
+<li id="nav_ing"><a class="menu" href="http://home.cnblogs.com/ing/">闪存</a></li>
+<li id="nav_newpost"><a id="MyLinks1_NewPostLink" class="menu" rel="nofollow" href="http://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li id="nav_contact"><a id="MyLinks1_ContactLink" class="menu" rel="nofollow" href="http://msg.cnblogs.com/send/David_Tang">联系</a></li>
+<li id="nav_rss"><a id="MyLinks1_Syndication" class="menu" href="http://www.cnblogs.com/mchina/rss">订阅</a>
+<!--<a id="MyLinks1_XMLLink" class="aHeaderXML" href="http://www.cnblogs.com/mchina/rss"><img src="http://www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li id="nav_admin"><a id="MyLinks1_Admin" class="menu" rel="nofollow" href="http://i.cnblogs.com/">管理</a></li>
+</ul>
+
+		<div class="blogStats">
+			
+			
+<!--done-->
+随笔-115&nbsp;
+文章-0&nbsp;
+评论-511&nbsp;
+
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/mchina/p/linux-centos-disk-array-software_raid.html">CentOS 6.3下配置软RAID（Software RAID）</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><p><span style="font-size: 16px;"><strong><span style="color: #800000;">一、RAID 简介</span></strong></span></p>
+<p>RAID 是英文Redundant Array of Independent Disks 的缩写，翻译成中文意思是“独立磁盘冗余阵列”，有时也简称磁盘阵列（Disk Array）。</p>
+<p>简单的说，RAID是一种把多块独立的硬盘（物理硬盘）按不同的方式组合起来形成一个硬盘组（逻辑硬盘），从而提供比单个硬盘更高的存储性能和提供数据备份的技术。</p>
+<p>组成磁盘阵列的不同方式称为RAID级别（RAID Levels），常见的RAID Level 包括raid0, raid1, raid5, raid10。各level 对比如下：</p>
+<table style="width: 900px; height: 189px;" align="center" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td align="center" width="88"><strong>RAID等级</strong></td>
+<td align="center" width="94"><strong>最少硬盘</strong></td>
+<td align="center" width="105"><strong>最大容错</strong></td>
+<td align="center" width="103"><strong>可用容量</strong></td>
+<td align="center" width="101"><strong>读取性能</strong></td>
+<td align="center" width="110"><strong>写入性能</strong></td>
+<td align="center" width="111"><strong>安全性</strong></td>
+<td align="center" width="100"><strong>目的</strong></td>
+<td align="center" width="86"><strong>应用产业</strong></td>
+</tr>
+<tr>
+<td align="center" width="88">0</td>
+<td align="center" width="94">2</td>
+<td align="center" width="105">0</td>
+<td align="center" width="103">n</td>
+<td align="center" width="101">n</td>
+<td align="center" width="110">n</td>
+<td align="center" width="111">一个硬盘异常，全部硬盘都会异常</td>
+<td align="center" width="100">追求最大容量、速度</td>
+<td align="center" width="86">3D产业实时渲染、视频剪接高速缓存</td>
+</tr>
+<tr>
+<td align="center" width="88">1</td>
+<td align="center" width="94">2</td>
+<td align="center" width="105">n-1</td>
+<td align="center" width="103">1</td>
+<td align="center" width="101">n</td>
+<td align="center" width="110">1</td>
+<td align="center" width="111">最高，一个正常即可</td>
+<td align="center" width="100">追求最大安全性</td>
+<td align="center" width="86">个人、企业备份</td>
+</tr>
+<tr>
+<td align="center" width="88">5</td>
+<td align="center" width="94">3</td>
+<td align="center" width="105">1</td>
+<td align="center" width="103">n-1</td>
+<td align="center" width="101">n-1</td>
+<td align="center" width="110">n-1</td>
+<td align="center" width="111">高</td>
+<td align="center" width="100">追求最大容量、最小预算</td>
+<td align="center" width="86">个人、企业备份</td>
+</tr>
+<tr>
+<td align="center" width="88">10</td>
+<td align="center" width="94">4</td>
+<td align="center" width="105">n/2</td>
+<td align="center" width="103">n/2</td>
+<td align="center" width="101">n</td>
+<td align="center" width="110">n/2</td>
+<td align="center" width="111">安全性高</td>
+<td align="center" width="100">综合RAID 0/1优点，理论速度较快</td>
+<td align="center" width="86">大型数据库、服务器</td>
+</tr>
+</tbody>
+</table>
+<p><strong style="line-height: 1.5;">说明：</strong><span style="line-height: 1.5;">n 代表硬盘总数</span></p>
+<p>关于RAID的详细介绍，请参考：<a href="http://zh.wikipedia.org/wiki/RAID">http://zh.wikipedia.org/wiki/RAID</a></p>
+<p><span style="font-size: 16px;"><strong><span style="color: #800000;">二、系统环境</span></strong></span></p>
+<p><strong>实验环境：</strong>Oracle VM VirtualBox</p>
+<p><strong>系统平台：</strong>CentOS release 6.3 (Final)</p>
+<p><strong>mdadm 版本：</strong>mdadm - v3.2.6 - 25th October 2012</p>
+<p><span style="font-size: 16px;"><strong><span style="color: #800000;">三、设置磁盘</span></strong></span></p>
+<p>在Oracle VM VirtualBox 里模拟物理增加磁盘，在这篇文章中，我们将创建RAID0, RAID1, 
+RAID5分区，RAID0 需要两块硬盘，RAID1 需要两块硬盘，RAID5需要四块硬盘，所以在这里添加了八块物理硬盘，每块5.00 GB.</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101501127173367.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="26" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101501140451394.jpg" alt="26" height="494" border="0" width="642"></a></p>
+<p>在Linux 系统里使用fdisk –l 命令查看。</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101501148899736.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="27" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101501158112121.jpg" alt="27" height="483" border="0" width="736"></a></p>
+<p><span style="font-size: 16px;"><strong><span style="color: #800000;">四、安装mdadm</span></strong></span></p>
+<p>mdadm 是multiple devices admin 的简称，它是Linux下的一款标准的软件RAID 管理工具。</p>
+<p>4.1 查看是否安装了mdadm软件</p>
+<p># rpm -qa|grep mdadm</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101501166863220.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="9" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101501170775634.jpg" alt="9" height="27" border="0" width="304"></a></p>
+<p>4.2 如果未安装，则使用yum 方式安装。</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101501180145949.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="10" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101501189055575.jpg" alt="10" height="586" border="0" width="485"></a></p>
+<p>准备工作完毕，下面可以着手创建raid 了。</p>
+<p><span style="font-size: 16px;"><strong><span style="color: #800000;">五、创建RAID0</span></strong></span></p>
+<p>5.1 新建分区</p>
+<p>创建RAID0 需要两块硬盘，所以我们拿/dev/sdb 和/dev/sdc 来实验。</p>
+<p># fdisk /dev/sdb&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //对sdb 进行分区</p>
+<p>输入"m", 获取帮助，输入"p", 查看分区前磁盘状态，其他Command action 具体含义请自行Google, Baidu。</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101501199059403.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="3" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101501208113260.jpg" alt="3" height="546" border="0" width="668"></a></p>
+<p>输入"n" 新建分区，这里我们将整个磁盘都划分成一个分区，然后输入"p" 查看分区情况。</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101501220301788.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="4" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101501230458844.jpg" alt="4" height="292" border="0" width="537"></a></p>
+<p>5.2 修改<span>分区类型</span></p>
+<p>默认新建分区的类型是Linux，代号83，我们需要将其修改为raid 类型。输入"t" ，然后输入"L" 
+列出所有的文件格式，这里我们选择"fd Linux raid auto", 输入"fd"，然后再输入"p" 
+查看分区情况，这是分区格式已经变成了Linux raid autodetect.</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101501238278972.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="5" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101501252022986.jpg" alt="5" height="565" border="0" width="654"></a></p>
+<p>5.3 保存分区</p>
+<p>输入"w" 保存分区。</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101501261393300.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="6" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101501267331484.jpg" alt="6" height="81" border="0" width="359"></a></p>
+<p>使用同样方法对/dev/sdc 进行分区操作。</p>
+<p>5.4 同步分区情况</p>
+<p>使用partprobe 命令同步分区情况。</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101501272496627.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="7" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101501279529011.jpg" alt="7" height="56" border="0" width="848"></a></p>
+<p>5.5 查看现在的状态</p>
+<p># fdisk -l /dev/sdb /dev/sdc</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101501288746097.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="11" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101501295144969.jpg" alt="11" height="291" border="0" width="638"></a></p>
+<p>5.6 开始创建RAID0</p>
+<p># mdadm -C /dev/md0 -ayes -l0 -n2 /dev/sd[b,c]1</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101501299527667.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="12" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101501319051338.jpg" alt="12" height="55" border="0" width="511"></a></p>
+<p><strong>说明：</strong></p>
+<p>-C　　--create　 &nbsp;创建阵列；</p>
+<p>-a　　--auto　　 &nbsp;同意创建设备，如不加此参数时必须先使用mknod 命令来创建一个RAID设备，不过推荐使用-a yes参数一次性创建；</p>
+<p>-l　　&nbsp;--level　　　阵列模式，支持的阵列模式有 linear, raid0, raid1, raid4, raid5, raid6, raid10, multipath, faulty, container；</p>
+<p>-n &nbsp; &nbsp; --raid-devices&nbsp;&nbsp;&nbsp; 阵列中活动磁盘的数目，该数目加上备用磁盘的数目应该等于阵列中总的磁盘数目；</p>
+<p>/dev/md0　　　　&nbsp;阵列的设备名称；</p>
+<p>/dev/sd{b,c}1　　参与创建阵列的磁盘名称；</p>
+<p>5.7 查看raid0 状态</p>
+<p># cat /proc/mdstat</p>
+<p># mdadm -D /dev/md0</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101501324994223.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="13" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101501343749150.jpg" alt="13" height="430" border="0" width="523"></a></p>
+<p><strong>说明：</strong>Raid Level : 阵列级别；&nbsp;</p>
+<p>　　　Array Size : 阵列容量大小；</p>
+<p>　　　Raid Devices : RAID成员的个数；</p>
+<p>　　　Total Devices : RAID中下属成员的总计个数，因为还有冗余硬盘或分区，也就是spare，为了RAID的正常运珩，随时可以推上去加入RAID的；</p>
+<p>　　　State : clean, degraded, recovering 状态，包括三个状态，clean 表示正常，degraded 表示有问题，recovering 表示正在恢复或构建；</p>
+<p>　　　Active Devices : 被激活的RAID成员个数；</p>
+<p>　　　Working Devices : 正常的工作的RAID成员个数；</p>
+<p>　　　Failed Devices : 出问题的RAID成员；</p>
+<p>　　　Spare Devices : 备用RAID成员个数，当一个RAID的成员出问题时，用其它硬盘或分区来顶替时，RAID要进行构建，在没构建完成时，这个成员也会被认为是spare设备；</p>
+<p>　　　UUID : RAID的UUID值，在系统中是唯一的；</p>
+<p>5.8 创建RAID 配置文件/etc/mdadm.conf</p>
+<p>RAID 的配置文件为/etc/mdadm.conf，默认是不存在的，需要手工创建。</p>
+<p>该配置文件的主要作用是系统启动的时候能够自动加载软RAID，同时也方便日后管理。但不是必须的，<strong>推荐对该文件进行配置。</strong></p>
+<p>我们这里需要创建这个文件，测试中发现，如果没有这个文件，则reboot 后，已经创建好的md0 会自动变成md127。</p>
+<p>/etc/mdadm.conf 文件内容包括：</p>
+<p>由DEVICE 选项指定用于软RAID的所有设备，和ARRAY 选项所指定阵列的设备名、RAID级别、阵列中活动设备的数目以及设备的UUID号。</p>
+<p>5.8.1 创建/etc/mdadm.conf</p>
+<p># echo DEVICE /dev/sd{b,c}1 &gt;&gt; /etc/mdadm.conf</p>
+<p># mdadm –Ds &gt;&gt; /etc/mdadm.conf</p>
+<p>5.8.2 修改配置文件</p>
+<p>当前生成的/etc/mdadm.conf 文件内容并不符合所规定的格式，所以也是不生效的，这时需要手工修改该文件内容为如下格式：</p>
+<p># cat /etc/mdadm.conf</p>
+<p>DEVICE /dev/sdb1 /dev/sdc1</p>
+<p>ARRAY /dev/md0 level=raid0 num-devices=2 UUID=5160ea40:cb2b44f1:c650d2ef:0db09fd0</p>
+<p>5.9 格式化磁盘阵列</p>
+<p># mkfs.ext4 /dev/md0</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101501354208963.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="14" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101501361088119.jpg" alt="14" height="339" border="0" width="583"></a></p>
+<p>5.10 建立挂载点并挂载</p>
+<p># mkdir /raid0</p>
+<p># mount /dev/md0 /raid0/</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101501366397492.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="15" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101501372643135.jpg" alt="15" height="131" border="0" width="482"></a></p>
+<p>可以看到，/dev/md0 的可用大小为9.9G。</p>
+<p>5.11 写入/etc/fstab</p>
+<p><span>为了下次开机还能正常使用我们的RAID设备，需要将挂载的信息写入/etc/fstab 文件中。</span></p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101501379368061.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="16" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101501387951633.jpg" alt="16" height="204" border="0" width="761"></a></p>
+<p>然后reboot 测试开机是否自动挂载，raid0 创建完毕。</p>
+<p><span style="font-size: 16px;"><strong><span style="color: #800000;">六、创建RAID1</span></strong></span></p>
+<p>和创建raid0 类似，我们拿/dev/sdd 和/dev/sde 这两块硬盘来做实验。</p>
+<p>6.1 新建分区并修改分区类型</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101501394672261.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="17" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101501414992674.jpg" alt="17" height="604" border="0" width="673"></a></p>
+<p>使用同样方法对/dev/sde 进行分区操作，分区结果如下：</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101501432173116.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="18" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101501442642929.jpg" alt="18" height="291" border="0" width="636"></a></p>
+<p>6.2 开始创建RAID1</p>
+<p># mdadm -C /dev/md1 -ayes -l1 -n2 /dev/sd[d,e]1</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101501450611585.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="19" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101501476553126.jpg" alt="19" height="134" border="0" width="515"></a></p>
+<p>6.3 查看raid1 状态</p>
+<p># cat /proc/mdstat</p>
+<p># mdadm -D /dev/md1</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101501484526482.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="20" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101501494674539.jpg" alt="20" height="630" border="0" width="769"></a></p>
+<p><strong>说明：</strong>Used Dev Size : RAID单位成员容量大小，也就是构成RAID的成员硬盘或分区的容量的大小；</p>
+<p>可以看到，raid1 正在创建，待创建完毕，状态如下：</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101501503272410.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="21" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101501512023509.jpg" alt="21" height="630" border="0" width="518"></a></p>
+<p>6.4 添加raid1 到RAID 配置文件/etc/mdadm.conf 并修改</p>
+<p># echo DEVICE /dev/sd{b,c}1 &gt;&gt; /etc/mdadm.conf</p>
+<p># mdadm –Ds &gt;&gt; /etc/mdadm.conf</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101501519996865.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="22" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101501525454765.jpg" alt="22" height="84" border="0" width="669"></a></p>
+<p>6.5 格式化磁盘阵列</p>
+<p># mkfs.ext4 /dev/md1</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101501531709407.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="23" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101501548583392.jpg" alt="23" height="316" border="0" width="560"></a></p>
+<p>6.6 建立挂载点并挂载</p>
+<p># mkdir /raid1</p>
+<p># mount /dev/md1 /raid1/</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101501556556748.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="24" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101501562177877.jpg" alt="24" height="134" border="0" width="487"></a></p>
+<p>可以看到，/dev/md1 的可用大小为4.9G。</p>
+<p>6.7 写入/etc/fstab</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101501568582047.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="25" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101501576089417.jpg" alt="25" height="253" border="0" width="764"></a></p>
+<p>然后reboot 测试开机是否自动挂载，raid1 创建完毕。</p>
+<p><span style="font-size: 16px;"><strong><span style="color: #800000;">七、创建RAID5</span></strong></span></p>
+<p>RAID5 至少需要三块硬盘，我们拿/dev/sdf, /dev/sdg, /dev/sdh, /dev/sdi 这四块硬盘来做实验，三块做为活动盘，另一块做为热备盘。</p>
+<p>7.1 新建分区并修改分区类型</p>
+<p>分区结果如下：</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101501583112803.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="28" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101501592804874.jpg" alt="28" height="549" border="0" width="628"></a></p>
+<p>7.2 开始创建RAID5</p>
+<p># mdadm -C /dev/md5 -ayes -l5 –n3 -x1 /dev/sd[f,g,h,i]1</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101502009832087.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="29" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101502015928201.jpg" alt="29" height="58" border="0" width="584"></a></p>
+<p><strong>说明：</strong>"-x1" 或"--spare-devices=1" 表示当前阵列中热备盘只有一块，若有多块热备盘，则将"--spare-devices" 的值设置为相应的数目。</p>
+<p>7.3 查看raid5 状态</p>
+<p># cat /proc/mdstat</p>
+<p># mdadm -D /dev/md5</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101502023273344.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="30" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101502032802186.jpg" alt="30" height="617" border="0" width="777"></a></p>
+<p><strong>说明：</strong>Rebuild Status : RAID 的构建进度；</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;4 8 113 2 spare rebuilding /dev/sdh1 注：未被激活，正在构建中的成员，正在传输数据；</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;3 8 129 - spare /dev/sdi1 热备盘</p>
+<p>raid5 正在创建，而且速度很慢，待创建完毕，状态如下：</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101502041865041.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="31" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101502060149684.jpg" alt="31" height="579" border="0" width="617"></a></p>
+<p><span style="line-height: 1.5;">7.4 添加raid5 到RAID配置文件/etc/mdadm.conf 并修改</span></p>
+<p># echo DEVICE /dev/sd{f,g,h,i}1 &gt;&gt; /etc/mdadm.conf</p>
+<p># mdadm –Ds &gt;&gt; /etc/mdadm.conf</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101502067173070.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="32" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101502073427712.jpg" alt="32" height="109" border="0" width="670"></a></p>
+<p>7.5 格式化磁盘阵列</p>
+<p># mkfs.ext4 /dev/md5</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101502081392069.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="33" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101502089202196.jpg" alt="33" height="317" border="0" width="585"></a></p>
+<p>7.6 建立挂载点并挂载</p>
+<p># mkdir /raid5</p>
+<p># mount /dev/md5 /raid5/</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101502097334080.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="34" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101502107803894.jpg" alt="34" height="149" border="0" width="501"></a></p>
+<p>raid5 的可用大小为9.9G，即（3-1）x 5G.</p>
+<p>向 /raid5 里面写入测试数据：</p>
+<p># touch test_raid5.failed <br># touch test_raid5.fail     <br># ls</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101502125147565.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="38" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101502139361863.jpg" alt="38" height="70" border="0" width="392"></a></p>
+<p>7.7 写入 /etc/fstab </p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101502147176692.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="35" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101502153897320.jpg" alt="35" height="261" border="0" width="761"></a></p>
+<p>然后reboot 测试开机是否自动挂载，raid5 创建完毕。</p>
+<p><span style="font-size: 16px;"><strong><span style="color: #800000;">八、RAID维护</span></strong></span></p>
+<p>RAID 做好之后，还需要进行日常的维护操作，比如其中一块物理硬盘损坏，我们需要进行更换故障磁盘的操作，下面我们将模拟raid5 中磁盘损坏来讲解软RAID 的维护操作。</p>
+<p>8.1 模拟磁盘损坏</p>
+<p>在实际中，当软RAID 检测到某个磁盘有故障时，会自动标记该磁盘为故障磁盘，并停止对故障磁盘的读写操作。在这里我们将/dev/sdh1 模拟为出现故障的磁盘，命令如下：</p>
+<p># mdadm /dev/md5 -f /dev/sdh1</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101502169671805.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="36" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101502185455289.jpg" alt="36" height="40" border="0" width="370"></a></p>
+<p>8.2 查看重建状态</p>
+<p>在上面创建RAID 5过程中，我们设置了一个热备盘，所以当有标记为故障磁盘的时候，热备盘会自动顶替故障磁盘工作，阵列也能够在短时间内实现重建。通过查看"/proc/mdstat" 文件可以看到当前阵列的状态，如下：</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101502194206388.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="37" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101502211243601.jpg" alt="37" height="615" border="0" width="773"></a></p>
+<p>以上信息表明阵列正在重建，当一个设备出现故障或被标记故障时，相应设备的方括号后将被标以(F)，如 "sdh1[4](F)"。</p>
+<p>其中 "[3/2]" 的第一位数表示阵列所包含的设备数，第二位数表示活动的设备数，因为目前有一个故障设备，所以第二位数为2；</p>
+<p>这时的阵列以降级模式运行，虽然该阵列仍然可用，但是不具有数据冗余；</p>
+<p>而 "[UU_]" 表示当前阵列可以正常使用的设备是/dev/sdf1 和/dev/sdg1，如果是设备 “/dev/sdf1” 出现故障时，则将变成[_UU]。</p>
+<p>8.3 查看之前写入的测试数据是否还在</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101502226086113.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="39" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101502230301285.jpg" alt="39" height="45" border="0" width="395"></a></p>
+<p>数据正常，未丢失。</p>
+<p>8.4 重建完毕后查看阵列状态</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101502236555927.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="40" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101502243429784.jpg" alt="40" height="174" border="0" width="625"></a></p>
+<p>当前的RAID 设备又恢复了正常。</p>
+<p>8.5 移除损坏的磁盘</p>
+<p>移除刚才模拟出现故障的/dev/sdh1，操作如下：</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101502250141414.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="41" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101502267643612.jpg" alt="41" height="44" border="0" width="409"></a></p>
+<p>8.6 再次查看md5的状态</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101502275453740.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="42" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101502284992582.jpg" alt="42" height="552" border="0" width="625"></a></p>
+<p>/dev/sdh1 已经移除了。</p>
+<p>8.7 新加热备磁盘</p>
+<p>如果是实际生产中添加新的硬盘，同样需要对新硬盘进行创建分区的操作，这里我们为了方便，将刚才模拟损坏的硬盘再次新加到raid5 中。</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101502290925467.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="43" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101502296249137.jpg" alt="43" height="44" border="0" width="412"></a></p>
+<p>8.8 查看raid5 阵列状态</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101502303584279.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="44" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101502311557636.jpg" alt="44" height="643" border="0" width="628"></a></p>
+<p>/dev/sdh1 已经变成了热备盘。</p>
+<p>8.9 查看测试数据</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101502316392023.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="45" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101502320927950.jpg" alt="45" height="40" border="0" width="405"></a></p>
+<p>数据正常，未丢失。故障切换测试完毕。</p>
+<p><span style="font-size: 16px;"><strong><span style="color: #800000;">九、向RAID中增加存储硬盘</span></strong></span></p>
+<p>如果现在已经做好的RAID 空间还是不够用的话，那么我们可以向里面增加新的硬盘，来增加RAID 的空间。</p>
+<p>9.1 在虚拟机中添加物理硬盘</p>
+<p>上面我们已经在虚拟机中添加了八块硬盘，这里需要模拟新增硬盘，所以首先将虚拟机关闭，然后在存储里再次新增一块5GB的硬盘。然后分区等等操作，这里不再赘述。</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101502326554378.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border: 0px;" title="47" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101502346706263.jpg" alt="47" height="494" border="0" width="642"></a></p>
+<p>9.2 向RAID 中新加一块硬盘</p>
+<p># mdadm /dev/md5 -a /dev/sdj1 </p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101502354051405.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border: 0px;" title="48" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101502358587332.jpg" alt="48" height="40" border="0" width="378"></a></p>
+<p>查看此时的RAID 状态</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101502374525046.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border: 0px;" title="49" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101502381398903.jpg" alt="49" height="434" border="0" width="523"></a></p>
+<p>默认情况下，我们向RAID 中增加的磁盘，会被默认当作热备盘，我们需要把热备盘加入到RAID 的活动盘中。</p>
+<p>9.3 热备盘转换成活动盘</p>
+<p># mdadm -G /dev/md5 -n4</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101502386247588.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border: 0px;" title="50" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101502390308530.jpg" alt="50" height="40" border="0" width="423"></a></p>
+<p>查看此时RAID 状态</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101502396865929.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border: 0px;" title="51" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101502402953044.jpg" alt="51" height="474" border="0" width="529"></a></p>
+<p>/dev/sdj1 已经变成了活动盘，但是Array Size : 10465280 (9.98 GiB 10.72 GB) 并没有变大，这是因为构建没有完成，图中也可以看出Status 为clean, reshaping。</p>
+<p>等RAID 完成构建后，RAID的容量就会改变为（4-1）x 5GB，查看进度可以参考Reshape Status，也可以参考/proc/mdstat.</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101502410926401.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border: 0px;" title="53" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101502422029728.jpg" alt="53" height="654" border="0" width="774"></a></p>
+<p>构建完毕后的RAID 状态：</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101502455925626.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border: 0px;" title="54" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101502464835253.jpg" alt="54" height="592" border="0" width="634"></a></p>
+<p>Array Size : 15697920 (14.97 GiB 16.07 GB)，磁盘容量已经增加了。</p>
+<p>9.4 扩容文件系统</p>
+<p>RAID 构建完毕后，阵列容量增加，但是文件系统还没有增加，这时我们还需要对文件系统进行扩容。</p>
+<p># df –TH</p>
+<p># resize2fs /dev/md5</p>
+<p># df –TH</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101502475458296.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border: 0px;" title="57" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101502493892467.jpg" alt="57" height="382" border="0" width="581"></a></p>
+<p>文件系统已经扩容到15G，而且测试数据正常，未丢失，新增物理硬盘成功。</p>
+<p>9.5 修改RAID 配置文件/etc/mdadm.conf</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101502501702594.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border: 0px;" title="56" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101502508278993.jpg" alt="56" height="110" border="0" width="665"></a></p>
+<p>9.6 reboot 测试</p>
+<p><a href="http://images.cnitblog.com/blog/370046/201406/101502519992536.jpg"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border: 0px;" title="58" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/101502527024920.jpg" alt="58" height="276" border="0" width="628"></a></p>
+<p>重启系统后，一切正常，Linux下配置软RAID成功。</p>
+<p>&nbsp;</p>
+<p><strong>参考资料</strong></p>
+<ul>
+<li>羽飞博客：<a href="http://www.opsers.org/base/learning-linux-the-day-that-the-system-configuration-in-the-rhel6-disk-array-raid.html" target="_blank">http://www.opsers.org/base/learning-linux-the-day-that-the-system-configuration-in-the-rhel6-disk-array-raid.html</a></li>
+
+
+
+
+
+</ul>
+<p>&nbsp;</p>
+<p><span style="color: #800000;"><strong>CentOS 6.3下配置LVM（逻辑卷管理）</strong></span></p>
+<p><span style="color: #800000;"><a href="http://www.cnblogs.com/mchina/p/linux-centos-logical-volume-manager-lvm.html" target="_blank"><span style="color: #800000;">http://www.cnblogs.com/mchina/p/linux-centos-logical-volume-manager-lvm.html</span></a></span></p>
+<p>&nbsp;</p>
+<hr>
+<p><span style="color: #800000;"><strong>David Camp</strong></span></p>
+<ul>
+<li>技术交流，请加QQ群：</li>
+
+
+
+
+
+
+</ul>
+<p>　　　　<span>系统运维技术分享Ⅲ：416491168</span></p>
+<ul>
+<li>作者QQ：562866602</li>
+<li>我的微信号：mchina_tang</li>
+<li>给我写信：mchina_tang@qq.com</li>
+<li>我的地址：江苏·苏州</li>
+
+
+
+
+
+
+</ul>
+<p><span style="color: #800000;"><strong><strong><strong>我们永远相信，分享是一种美德 |&nbsp;</strong></strong>We Believe, Great People Share Knowledge...</strong></span></p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/mchina/category/381459.html">Linux</a></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/mchina/tag/linux/">linux</a>, <a href="http://www.cnblogs.com/mchina/tag/CentOS/">CentOS</a>, <a href="http://www.cnblogs.com/mchina/tag/disk%20array/">disk array</a>, <a href="http://www.cnblogs.com/mchina/tag/software%20raid/">software raid</a>, <a href="http://www.cnblogs.com/mchina/tag/%E8%BD%AFraid/">软raid</a>, <a href="http://www.cnblogs.com/mchina/tag/raid0/">raid0</a>, <a href="http://www.cnblogs.com/mchina/tag/raid1/">raid1</a>, <a href="http://www.cnblogs.com/mchina/tag/raid5/">raid5</a>, <a href="http://www.cnblogs.com/mchina/tag/%E7%A3%81%E7%9B%98%E9%98%B5%E5%88%97/">磁盘阵列</a></div>
+<div id="blog_post_info"><div id="green_channel">
+绿色通道：
+<a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(3780004,cb_blogId,1);green_channel_success(this,'谢谢推荐！');">好文要顶</a>
+<a id="green_channel_follow" onclick="c_follow();" href="javascript:void(0);">关注我</a>
+<a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a><a id="green_channel_contact" href="http://msg.cnblogs.com/send/David_Tang" target="_blank">与我联系</a>
+<a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/icon_weibo_24.png" alt=""></a>
+</div>
+<div id="author_profile">
+<div id="author_profile_info" class="author_profile_info">
+<a href="http://home.cnblogs.com/u/mchina/" target="_blank"><img src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/u370046.jpg" class="author_avatar" alt=""></a>
+<div id="author_profile_detail" class="author_profile_info">
+<a href="http://home.cnblogs.com/u/mchina/">David_Tang</a><br>
+<a href="http://home.cnblogs.com/u/mchina/followees">关注 - 3</a><br>
+<a href="http://home.cnblogs.com/u/mchina/followers">粉丝 - 925</a>
+</div>
+</div>
+<div class="clear"></div>
+<div id="author_profile_honor"></div>
+<div id="author_profile_follow">
+    <a href="javascript:void(0);" onclick="c_follow();return false;">+加关注</a>
+</div>
+</div>
+<div id="div_digg">										
+    <div class="diggit" onclick="votePost(3780004,'Digg')">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+	<div class="buryit" onclick="votePost(3780004,'Bury')"> 
+		<span class="burynum" id="bury_count">0</span>
+	</div>
+	<div class="clear"></div>	
+	<div class="diggword" id="digg_tips">
+    (请您对文章做出评价)
+    </div>	
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/mchina/p/3711217.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/mchina/p/3711217.html" title="发布于2014-05-06 16:02">微信公众平台开发（十二） 发送客服消息</a><br><a href="http://www.cnblogs.com/mchina/p/linux-centos-logical-volume-manager-lvm.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/mchina/p/linux-centos-logical-volume-manager-lvm.html" title="发布于2014-06-18 10:47">CentOS 6.3下配置LVM（逻辑卷管理）</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2014-06-11 10:03</span> <a href="http://www.cnblogs.com/mchina/">David_Tang</a> 阅读(<span id="post_view_count">5810</span>) 评论(<span id="post_comment_count">0</span>)  <a href="http://i.cnblogs.com/EditPosts.aspx?postid=3780004" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(3780004);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,isLogined=false,cb_blogId=107026,cb_entryId=3780004,cb_blogApp=currentBlogApp,cb_blogUserGuid='2e55a023-ab40-e111-9590-842b2b196315',cb_entryCreatedDate='2014/6/11 10:03:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" id="lnk_RefreshComments" onclick="return RefreshCommentList();">刷新评论</a><a href="#" onclick="return RefreshPage();">刷新页面</a><a href="#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login('commentform');">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="site_nav_under"><a href="http://www.cnblogs.com/" target="_blank" title="开发者的网上家园">博客园首页</a><a href="http://q.cnblogs.com/" target="_blank" title="程序员问答社区">博问</a><a href="http://news.cnblogs.com/" target="_blank" title="IT新闻">新闻</a><a href="http://home.cnblogs.com/ing/" target="_blank">闪存</a><a href="http://job.cnblogs.com/" target="_blank">程序员招聘</a><a href="http://kb.cnblogs.com/" target="_blank">知识库</a></div>
+<div id="opt_under_post"></div>
+<script type="text/javascript">
+    var enableGoogleAd = canShowAdsense(); 
+    fixPostBodyFormat();
+</script>
+<script type="text/javascript">
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+    (function () {
+        if (enableGoogleAd) {
+            var gads = document.createElement('script');
+            gads.async = true;
+            gads.type = 'text/javascript';
+            var useSSL = 'https:' == document.location.protocol;
+            gads.src = (useSSL ? 'https:' : 'http:') +
+              '//www.googletagservices.com/tag/js/gpt.js';
+            var node = document.getElementsByTagName('script')[0];
+            node.parentNode.insertBefore(gads, node);
+        }
+  })();
+</script>
+<script type="text/javascript">
+    try {
+        if (enableGoogleAd) {
+            googletag.cmd.push(function() {
+            googletag.defineSlot('/1090369/cnblogs_blogpost_C2', [468, 60], 'div-gpt-ad-1433581717989-0').addService(googletag.pubads());
+            googletag.defineSlot('/1090369/cnblogs_blogpost_C1_sitehome', [300, 250], 'div-gpt-ad-1433581717989-1').addService(googletag.pubads());
+            googletag.pubads().enableSingleRequest();
+            googletag.pubads().collapseEmptyDivs();
+            googletag.enableServices();
+            });
+        };
+    } catch (e) { }
+</script>
+<div id="google_ad_c1" class="c_ad_block">
+    <div id="div-gpt-ad-1433581717989-1" style="height:250px; width:300px;">
+    <script type="text/javascript">
+        try {
+            if (enableGoogleAd) {
+                googletag.cmd.push(function () { googletag.display('div-gpt-ad-1433581717989-1'); });
+            } else {
+                $('#div-gpt-ad-1433581717989-1').hide();
+            }
+    } catch (e) { }
+    </script>
+    <div style="border: 0pt none;" id="google_ads_iframe_/1090369/cnblogs_blogpost_C1_sitehome_0__container__"><iframe src="javascript:&quot;<html><body style='background:transparent'></body></html>&quot;" style="border: 0px none; vertical-align: bottom;" marginheight="0" marginwidth="0" scrolling="no" name="google_ads_iframe_/1090369/cnblogs_blogpost_C1_sitehome_0" id="google_ads_iframe_/1090369/cnblogs_blogpost_C1_sitehome_0" frameborder="0" height="250" width="300"></iframe></div><iframe src="javascript:&quot;<html><body style='background:transparent'></body></html>&quot;" style="border: 0px none; vertical-align: bottom; visibility: hidden; display: none;" marginheight="0" marginwidth="0" scrolling="no" name="google_ads_iframe_/1090369/cnblogs_blogpost_C1_sitehome_0__hidden__" id="google_ads_iframe_/1090369/cnblogs_blogpost_C1_sitehome_0__hidden__" frameborder="0" height="0" width="0"></iframe></div>
+</div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/526559/" target="_blank">O2O发展遇尴尬：边烧钱边死亡 资本烧出伪需求</a><br> ·  <a href="http://news.cnblogs.com/n/526557/" target="_blank">特斯拉修复安全漏洞 补丁已发送给Model S车主</a><br> ·  <a href="http://news.cnblogs.com/n/526558/" target="_blank">硅谷风投陷“怪圈”：既担忧又不得不投</a><br> ·  <a href="http://news.cnblogs.com/n/526555/" target="_blank">微软发布Apple Watch版Outlook和实时翻译器</a><br> ·  <a href="http://news.cnblogs.com/n/526554/" target="_blank">科学家发现宇宙中最遥远的星系：132亿光年</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="google_ad_c2" class="c_ad_block">
+<div id="div-gpt-ad-1433581717989-0" style="height:60px; width:468px;">
+<script type="text/javascript">
+try {
+    if (enableGoogleAd) {
+        googletag.cmd.push(function () { googletag.display('div-gpt-ad-1433581717989-0'); });
+    } else {
+        $('#div-gpt-ad-1433581717989-0').hide();
+    }
+} catch (e) { }
+</script>
+<div style="border: 0pt none;" id="google_ads_iframe_/1090369/cnblogs_blogpost_C2_0__container__"><iframe src="javascript:&quot;<html><body style='background:transparent'></body></html>&quot;" style="border: 0px none; vertical-align: bottom;" marginheight="0" marginwidth="0" scrolling="no" name="google_ads_iframe_/1090369/cnblogs_blogpost_C2_0" id="google_ads_iframe_/1090369/cnblogs_blogpost_C2_0" frameborder="0" height="60" width="468"></iframe></div></div>
+</div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/526474/" target="_blank">今天你写了自动化测试吗</a><br> ·  <a href="http://kb.cnblogs.com/page/524548/" target="_blank">数学和编程</a><br> ·  <a href="http://kb.cnblogs.com/page/173667/" target="_blank">如何在面试中发现优秀程序员</a><br> ·  <a href="http://kb.cnblogs.com/page/525997/" target="_blank">通过心理学知识提高问题定位与解决能力（下）</a><br> ·  <a href="http://kb.cnblogs.com/page/522261/" target="_blank">通过心理学知识提高问题定位与解决能力（上）</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+$(function () {
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 200);
+});
+</script>
+</div>
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/mchina/">David_Tang</a><br>园龄：<a href="http://home.cnblogs.com/u/mchina/" title="入园时间：2012-01-17">3年6个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/mchina/followers/">925</a><br>关注：<a href="http://home.cnblogs.com/u/mchina/followees/">3</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="cnblogs.UserManager.FollowBlogger('2e55a023-ab40-e111-9590-842b2b196315')">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="calendar"><div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" title="日历" cellpadding="0" cellspacing="0">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar('2015/07/01');return false;">&lt;</a></td><td align="center">2015年8月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar('2015/09/01');return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" abbr="日" scope="col" align="center">日</th><th class="CalDayHeader" abbr="一" scope="col" align="center">一</th><th class="CalDayHeader" abbr="二" scope="col" align="center">二</th><th class="CalDayHeader" abbr="三" scope="col" align="center">三</th><th class="CalDayHeader" abbr="四" scope="col" align="center">四</th><th class="CalDayHeader" abbr="五" scope="col" align="center">五</th><th class="CalDayHeader" abbr="六" scope="col" align="center">六</th></tr><tr><td class="CalOtherMonthDay" align="center">26</td><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalOtherMonthDay" align="center">31</td><td class="CalWeekendDay" align="center">1</td></tr><tr><td class="CalWeekendDay" align="center">2</td><td align="center">3</td><td align="center">4</td><td align="center">5</td><td class="CalTodayDay" align="center">6</td><td align="center">7</td><td class="CalWeekendDay" align="center">8</td></tr><tr><td class="CalWeekendDay" align="center">9</td><td align="center">10</td><td align="center">11</td><td align="center">12</td><td align="center">13</td><td align="center">14</td><td class="CalWeekendDay" align="center">15</td></tr><tr><td class="CalWeekendDay" align="center">16</td><td align="center">17</td><td align="center">18</td><td align="center">19</td><td align="center">20</td><td align="center">21</td><td class="CalWeekendDay" align="center">22</td></tr><tr><td class="CalWeekendDay" align="center">23</td><td align="center">24</td><td align="center">25</td><td align="center">26</td><td align="center">27</td><td align="center">28</td><td class="CalWeekendDay" align="center">29</td></tr><tr><td class="CalWeekendDay" align="center">30</td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk" type="text">&nbsp;<input onclick="zzk_go()" value="找找看" id="btnZzk" class="btn_my_zzk" type="button"></div>
+<div id="widget_my_google" class="div_my_zzk"><input name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk" type="text">&nbsp;<input onclick="google_go()" value="谷歌搜索" class="btn_my_zzk" type="button"></div>
+</div>
+</div>
+
+</div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/mchina/tag/linux/">linux</a>(22)</li><li><a href="http://www.cnblogs.com/mchina/tag/postgresql/">postgresql</a>(22)</li><li><a href="http://www.cnblogs.com/mchina/tag/Packet%20Tracer/">Packet Tracer</a>(15)</li><li><a href="http://www.cnblogs.com/mchina/tag/Oracle%E7%AC%94%E8%AE%B0/">Oracle笔记</a>(14)</li><li><a href="http://www.cnblogs.com/mchina/tag/%E5%BE%AE%E4%BF%A1/">微信</a>(12)</li><li><a href="http://www.cnblogs.com/mchina/tag/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97/">微信公众</a>(11)</li><li><a href="http://www.cnblogs.com/mchina/tag/zhuojinsz/">zhuojinsz</a>(11)</li><li><a href="http://www.cnblogs.com/mchina/tag/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%B9%B3%E5%8F%B0%E5%BC%80%E5%8F%91/">微信公众平台开发</a>(9)</li><li><a href="http://www.cnblogs.com/mchina/tag/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/">微信开发</a>(8)</li><li><a href="http://www.cnblogs.com/mchina/tag/%E5%8D%93%E9%94%A6%E8%8B%8F%E5%B7%9E/">卓锦苏州</a>(6)</li><li><a href="http://www.cnblogs.com/mchina/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div class="catListPostCategory">
+<h3 class="catListTitle">随笔分类<span style="font-size:11px;font-weight:normal">(136)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/mchina/category/381459.html">Linux(20)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/mchina/category/381457.html">Linux Server(17)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/mchina/category/391868.html">Linux Shell(12)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/mchina/category/392129.html">Mysql(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/mchina/category/395111.html">Network(16)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/mchina/category/403734.html">Oracle(19)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/mchina/category/486547.html">PHP(12)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/mchina/category/381458.html">Postgresql(26)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/mchina/category/486546.html">微信开发(12)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catListPostArchive">
+<h3 class="catListTitle">随笔档案<span style="font-size:11px;font-weight:normal">(115)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/mchina/archive/2014/07.html">2014年7月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/mchina/archive/2014/06.html">2014年6月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/mchina/archive/2014/05.html">2014年5月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/mchina/archive/2014/03.html">2014年3月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/mchina/archive/2014/02.html">2014年2月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/mchina/archive/2013/10.html">2013年10月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/mchina/archive/2013/08.html">2013年8月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/mchina/archive/2013/07.html">2013年7月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/mchina/archive/2013/06.html">2013年6月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/mchina/archive/2013/04.html">2013年4月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_10" href="http://www.cnblogs.com/mchina/archive/2013/03.html">2013年3月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_11" href="http://www.cnblogs.com/mchina/archive/2013/02.html">2013年2月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_12" href="http://www.cnblogs.com/mchina/archive/2013/01.html">2013年1月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_13" href="http://www.cnblogs.com/mchina/archive/2012/12.html">2012年12月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_14" href="http://www.cnblogs.com/mchina/archive/2012/11.html">2012年11月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_15" href="http://www.cnblogs.com/mchina/archive/2012/09.html">2012年9月 (16)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_16" href="http://www.cnblogs.com/mchina/archive/2012/08.html">2012年8月 (18)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_17" href="http://www.cnblogs.com/mchina/archive/2012/07.html">2012年7月 (23)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_18" href="http://www.cnblogs.com/mchina/archive/2012/06.html">2012年6月 (9)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_19" href="http://www.cnblogs.com/mchina/archive/2012/05.html">2012年5月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_20" href="http://www.cnblogs.com/mchina/archive/2012/04.html">2012年4月 (1)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catList">
+<h3 class="catListTitle">链接</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_2_Link_0" href="http://hi.baidu.com/new/mchina_tang" rel="nofollow" target="_blank">蘇's 百度</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_1" href="http://blog.163.com/mchina_tang/" rel="nofollow" target="_blank">蘇's 网易</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_2" href="http://blog.sina.com.cn/mchinatang" rel="nofollow" target="_blank">蘇's 新浪</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_scorerank" class="sidebar-block">
+<div class="catListBlogRank">
+<h3 class="catListTitle">积分与排名</h3>
+<ul>
+	<li class="liScore">
+		积分 -	281327
+	</li>
+	<li class="liRank">
+		排名 -	387
+	</li>
+</ul>
+</div>
+
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+	<div id="RecentCommentsBlock"><ul>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/mchina/archive/2012/09/07/2651568.html#3237604">1. Re:Oracle笔记（六） 多表查询</a></li>
+    <li class="recent_comment_body">顶一个</li>
+    <li class="recent_comment_author">--youzhibing2904</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/mchina/p/centos-squid-proxy-server.html#3235542">2. Re:CentOS 6.4下Squid代理服务器的安装与配置</a></li>
+    <li class="recent_comment_body">请问博主，如何配置使squid同时支持http https透明代理呢？请指教</li>
+    <li class="recent_comment_author">--linux_person</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/mchina/archive/2013/01/04/2842275.html#3234155">3. Re:CentOS yum 源的配置与使用</a></li>
+    <li class="recent_comment_body">你好 网络yum源的该怎么用ftp进行配置呢？如果不用http的话</li>
+    <li class="recent_comment_author">--abiu</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/mchina/p/3332283.html#3232167">4. Re:微信公众平台开发（九） 数据库操作</a></li>
+    <li class="recent_comment_body">@David_Tang绑定第三方的情况下，这个数据库能用么？该怎么写编程？...</li>
+    <li class="recent_comment_author">--TristaaLee</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/mchina/p/3332283.html#3231735">5. Re:微信公众平台开发（九） 数据库操作</a></li>
+    <li class="recent_comment_body">@TristaaLee看下这个系列的第一章就知道了。...</li>
+    <li class="recent_comment_author">--David_Tang</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/mchina/archive/2013/02/20/2883404.html">1. Linux下Nagios的安装与配置(127401)</a></li><li><a href="http://www.cnblogs.com/mchina/archive/2013/01/03/2840040.html">2. Linux NFS服务器的安装与配置(116182)</a></li><li><a href="http://www.cnblogs.com/mchina/archive/2013/06/05/3108618.html">3. 微信公众平台开发（一） 配置接口(104741)</a></li><li><a href="http://www.cnblogs.com/mchina/archive/2013/01/04/2842275.html">4. CentOS yum 源的配置与使用(95878)</a></li><li><a href="http://www.cnblogs.com/mchina/archive/2012/12/18/2816717.html">5. CentOS 6.3下Samba服务器的安装与配置(83881)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/mchina/archive/2013/02/20/2883404.html">1. Linux下Nagios的安装与配置(73)</a></li><li><a href="http://www.cnblogs.com/mchina/archive/2013/06/05/3108618.html">2. 微信公众平台开发（一） 配置接口(57)</a></li><li><a href="http://www.cnblogs.com/mchina/p/3364377.html">3. 微信公众平台开发（十） 消息回复总结(33)</a></li><li><a href="http://www.cnblogs.com/mchina/archive/2012/12/18/2816717.html">4. CentOS 6.3下Samba服务器的安装与配置(26)</a></li><li><a href="http://www.cnblogs.com/mchina/p/3155072.html">5. 微信公众平台开发（四） 简单回复功能开发(22)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/mchina/archive/2013/02/20/2883404.html">1. Linux下Nagios的安装与配置(40)</a></li><li><a href="http://www.cnblogs.com/mchina/archive/2013/06/05/3108618.html">2. 微信公众平台开发（一） 配置接口(38)</a></li><li><a href="http://www.cnblogs.com/mchina/archive/2012/09/07/2651568.html">3. Oracle笔记（六） 多表查询(24)</a></li><li><a href="http://www.cnblogs.com/mchina/archive/2012/12/18/2816717.html">4. CentOS 6.3下Samba服务器的安装与配置(23)</a></li><li><a href="http://www.cnblogs.com/mchina/archive/2013/01/04/2842275.html">5. CentOS yum 源的配置与使用(21)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script><iframe class="jekbvglewmzfdihxtejf" style="visibility: hidden; display: none;" src="CentOS%206.3%E4%B8%8B%E9%85%8D%E7%BD%AE%E8%BD%AFRAID%EF%BC%88Software%20RAID%EF%BC%89%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/container.htm"></iframe>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2015 David_Tang
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body><iframe src="" style="display: none;"></iframe></html>

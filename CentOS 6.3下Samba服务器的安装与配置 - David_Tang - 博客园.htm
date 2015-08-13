@@ -1,0 +1,1281 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn"><head><script src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/analytics.js" async=""></script><script src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/postmoduletext.js" async=""></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>CentOS 6.3下Samba服务器的安装与配置 - David_Tang - 博客园</title>
+<link type="text/css" rel="stylesheet" href="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/bundle-SimpleBlue.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/mchina/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/mchina/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/mchina/wlwmanifest.xml">
+<script src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/encoder.js" type="text/javascript"></script><script src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/gpt.js" type="text/javascript" async=""></script><script src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'mchina', cb_enable_mathjax=false;</script>
+<script src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/blog-common.js" type="text/javascript"></script>
+<script src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/pubads_impl_68g.js" type="text/javascript" async=""></script></head>
+<body>
+<a name="top"></a>
+<div id="page_begin_html"><!-- Baidu Button BEGIN -->
+
+
+
+<!-- Baidu Button END --></div><script>load_page_begin_html();</script>
+
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+		
+<!--done-->
+<div class="title"><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/mchina/">David Camp</a></div>
+<div class="subtitle"></div>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li id="nav_sitehome"><a id="MyLinks1_HomeLink" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li id="nav_myhome"><a id="MyLinks1_MyHomeLink" class="menu" href="http://www.cnblogs.com/mchina/">首页</a></li>
+<li id="nav_q"><a class="menu" href="http://q.cnblogs.com/">博问</a></li>
+<li id="nav_ing"><a class="menu" href="http://home.cnblogs.com/ing/">闪存</a></li>
+<li id="nav_newpost"><a id="MyLinks1_NewPostLink" class="menu" rel="nofollow" href="http://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li id="nav_contact"><a id="MyLinks1_ContactLink" class="menu" rel="nofollow" href="http://msg.cnblogs.com/send/David_Tang">联系</a></li>
+<li id="nav_rss"><a id="MyLinks1_Syndication" class="menu" href="http://www.cnblogs.com/mchina/rss">订阅</a>
+<!--<a id="MyLinks1_XMLLink" class="aHeaderXML" href="http://www.cnblogs.com/mchina/rss"><img src="http://www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li id="nav_admin"><a id="MyLinks1_Admin" class="menu" rel="nofollow" href="http://i.cnblogs.com/">管理</a></li>
+</ul>
+
+		<div class="blogStats">
+			
+			
+<!--done-->
+随笔-115&nbsp;
+文章-0&nbsp;
+评论-513&nbsp;
+
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/mchina/archive/2012/12/18/2816717.html">CentOS 6.3下Samba服务器的安装与配置</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><p><span style="font-size: 16px;"><strong><span style="color: #800000;">一、简介</span></strong></span></p>
+<p>　　Samba是一个能让Linux系统应用Microsoft网络通讯协议的软件，而SMB是Server Message 
+Block的缩写，即为服务器消息块 
+，SMB主要是作为Microsoft的网络通讯协议，后来Samba将SMB通信协议应用到了Linux系统上，就形成了现在的Samba软件。后来微
+软又把 SMB 改名为 CIFS（Common Internet File System），即公共 Internet 
+文件系统，并且加入了许多新的功能，这样一来，使得Samba具有了更强大的功能。</p>
+<p>　　Samba最大的功能就是可以用于Linux与windows系统直接的文件共享和打印共享，Samba既可以用于windows与Linux
+之间的文件共享，也可以用于Linux与Linux之间的资源共享，由于NFS(网络文件系统）可以很好的完成Linux与Linux之间的数据共享，因
+而 Samba较多的用在了Linux与windows之间的数据共享上面。</p>
+<p>　　SMB是基于客户机/服务器型的协议，因而一台Samba服务器既可以充当文件共享服务器，也可以充当一个Samba的客户端，例如，一台在
+Linux 
+下已经架设好的Samba服务器，windows客户端就可以通过SMB协议共享Samba服务器上的资源文件，同时，Samba服务器也可以访问网络中
+ 其它windows系统或者Linux系统共享出来的文件。<br>Samba在windows下使用的是NetBIOS协议，如果你要使用Linux下共享出来的文件，请确认你的windows系统下是否安装了NetBIOS协议。</p>
+<p>　　组成Samba运行的有两个服务，一个是SMB，另一个是NMB；SMB是Samba 的核心启动服务，主要负责建立 Linux 
+Samba服务器与Samba客户机之间的对话， 验证用户身份并提供对文件和打印系统的访问，只有SMB服务启动，才能实现文件的共享，监听139 
+TCP端口；而NMB服务是负责解析用的，类似与DNS实现的功能，NMB可以把Linux系统共享的工作组名称与其IP对应起来，如果NMB服务没有启
+动，就只能通过IP来访问共享文件，监听137和138 UDP端口。</p>
+<p>　　例如，某台Samba服务器的IP地址为10.0.0.163，对应的工作组名称为davidsamba，那么在Windows的IE浏览器输入下面两条指令都可以访问共享文件。其实这就是Windows下查看Linux Samba服务器共享文件的方法。<br>
+　　<a>\\10.0.0.163\</a>共享目录名称<br>
+　　<a>\\davidsamba\</a>共享目录名称</p>
+<p>　　Samba服务器可实现如下功能：WINS和DNS服务； 网络浏览服务； Linux和Windows域之间的认证和授权； UNICODE字符集和域名映射；满足CIFS协议的UNIX共享等。</p>
+<p><span style="font-size: 16px;"><strong><span style="color: #800000;">二、系统环境</span></strong></span></p>
+<p>系统平台：CentOS release 6.3 (Final)</p>
+<p>Samba版本：samba-3.5.10-125.el6.x86_64</p>
+<p>Samba Server IP：10.0.0.163</p>
+<p>防火墙已关闭/iptables: Firewall is not running.</p>
+<p>SELINUX=disabled</p>
+<p><span style="font-size: 16px;"><strong><span style="color: #800000;">三、安装Samba服务</span></strong></span></p>
+<p>1、在可以联网的机器上使用yum工具安装，如果未联网，则挂载系统光盘进行安装。</p>
+<p># yum install samba samba-client samba-swat</p>
+<p>有依赖关系的包samba-common、samba-winbind-clients、libsmbclient将自动安装上去。</p>
+<p><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012121915364371.jpg" alt=""></p>
+<p>2、查看安装状况</p>
+<p><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012121316534052.jpg" alt=""></p>
+<p>3、安装包说明</p>
+<p>samba-common-3.5.10-125.el6.x86_64&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ //主要提供samba服务器的设置文件与设置文件语法检验程序testparm<br>samba-client-3.5.10-125.el6.x86_64&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ //客户端软件，主要提供linux主机作为客户端时，所需要的工具指令集<br>samba-swat-3.5.10-125.el6.x86_64&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ //基于https协议的samba服务器web配置界面<br>samba-3.5.10-125.el6.x86_64&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ //服务器端软件，主要提供samba服务器的守护程序，共享文档，日志的轮替，开机默认选项</p>
+<p>Samba服务器安装完毕，会生成配置文件目录/etc/samba和其它一些samba可执行命令工具，/etc/samba/smb.conf是samba的核心配置文件，/etc/init.d/smb是samba的启动/关闭文件。</p>
+<p>4、启动Samba服务器</p>
+<p>可以通过/etc/init.d/smb start/stop/restart来启动、关闭、重启Samba服务，启动SMB服务如下所示：<br>
+</p>
+<p><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012121414230770.jpg" alt=""></p>
+<p>5、查看samba的服务启动情况</p>
+<p># service smb status</p>
+<p><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012121414260339.jpg" alt=""></p>
+<p>6、设置开机自启动</p>
+<p># chkconfig --level 35 smb on&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //在3、5级别上自动运行samba服务</p>
+<p><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012121414271586.jpg" alt=""></p>
+<p><span style="font-size: 16px;"><strong><span style="color: #800000;">四、配置Samba服务</span></strong></span></p>
+<p>Samba的主配置文件为/etc/samba/smb.conf</p>
+<p>主配置文件由两部分构成</p>
+<ul>
+<li>Global Settings (55-245行)</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p>　　该设置都是与Samba服务整体运行环境有关的选项，它的设置项目是针对所有共享资源的。</p>
+<ul>
+<li>Share Definitions （246-尾行）</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p>　　该设置针对的是共享目录个别的设置，只对当前的共享资源起作用。</p>
+<p><strong>全局参数：</strong></p>
+<p>#==================Global Settings ===================<br>[global]</p>
+<p>config file = /usr/local/samba/lib/smb.conf.%m<br>说明：config 
+file可以让你使用另一个配置文件来覆盖缺省的配置文件。如果文件不存在，则该项无效。这个参数很有用，可以使得samba配置更灵活，可以让一台
+samba服务器模拟多台不同配置的服务器。比如，你想让PC1（主机名）这台电脑在访问Samba 
+Server时使用它自己的配置文件，那么先在/etc/samba/host/下为PC1配置一个名为smb.conf.pc1的文件，然后在
+smb.conf中加入：config file = /etc/samba/host/smb.conf.%m。这样当PC1请求连接Samba 
+Server时，smb.conf.%m就被替换成smb.conf.pc1。这样，对于PC1来说，它所使用的Samba服务就是由
+smb.conf.pc1定义的，而其他机器访问Samba Server则还是应用smb.conf。</p>
+<p>workgroup = WORKGROUP<br>说明：设定 Samba Server 所要加入的工作组或者域。</p>
+<p>server string = Samba Server Version %v<br>说明：设定 Samba Server 的注释，可以是任何字符串，也可以不填。宏%v表示显示Samba的版本号。</p>
+<p>netbios name = smbserver<br>说明：设置Samba Server的NetBIOS名称。如果不填，则默认会使用该服务器的DNS名称的第一部分。netbios name和workgroup名字不要设置成一样了。</p>
+<p>interfaces = lo eth0 192.168.12.2/24 192.168.13.2/24<br>说明：设置Samba Server监听哪些网卡，可以写网卡名，也可以写该网卡的IP地址。</p>
+<p>hosts allow = 127. 192.168.1. 192.168.10.1<br>说明：表示允许连接到Samba Server的客户端，多个参数以空格隔开。可以用一个IP表示，也可以用一个网段表示。hosts deny 与hosts allow 刚好相反。<br>例如：hosts allow=172.17.2.EXCEPT172.17.2.50<br>表示容许来自172.17.2.*的主机连接，但排除172.17.2.50<br>hosts allow=172.17.2.0/255.255.0.0<br>表示容许来自172.17.2.0/255.255.0.0子网中的所有主机连接<br>hosts allow=M1，M2<br>表示容许来自M1和M2两台计算机连接<br>hosts allow=@pega<br>表示容许来自pega网域的所有计算机连接</p>
+<p>max connections = 0<br>说明：max connections用来指定连接Samba Server的最大连接数目。如果超出连接数目，则新的连接请求将被拒绝。0表示不限制。 </p>
+<p>deadtime = 0<br>说明：deadtime用来设置断掉一个没有打开任何文件的连接的时间。单位是分钟，0代表Samba Server不自动切断任何连接。</p>
+<p>time server = yes/no<br>说明：time server用来设置让nmdb成为windows客户端的时间服务器。</p>
+<p>log file = /var/log/samba/log.%m<br>说明：设置Samba Server日志文件的存储位置以及日志文件名称。在文件名后加个宏%m（主机名），表示对每台访问Samba 
+Server的机器都单独记录一个日志文件。如果pc1、pc2访问过Samba 
+Server，就会在/var/log/samba目录下留下log.pc1和log.pc2两个日志文件。</p>
+<p>max log size = 50<br>说明：设置Samba Server日志文件的最大容量，单位为kB，0代表不限制。</p>
+<p>security = user<br>说明：设置用户访问Samba Server的验证方式，一共有四种验证方式。<br>1. share：用户访问Samba Server不需要提供用户名和口令, 安全性能较低。<br>2. user：Samba Server共享目录只能被授权的用户访问,由Samba Server负责检查账号和密码的正确性。账号和密码要在本Samba Server中建立。<br>3.
+ server：依靠其他Windows NT/2000或Samba 
+Server来验证用户的账号和密码,是一种代理验证。此种安全模式下,系统管理员可以把所有的Windows用户和口令集中到一个NT系统上,使用
+Windows NT进行Samba认证, 远程服务器可以自动认证全部用户和口令,如果认证失败,Samba将使用用户级安全模式作为替代的方式。<br>4. domain：域安全级别,使用主域控制器(PDC)来完成认证。</p>
+<p>passdb backend = tdbsam<br>说明：passdb backend就是用户后台的意思。目前有三种后台：smbpasswd、tdbsam和ldapsam。sam应该是security account manager（安全账户管理）的简写。<br>1.smbpasswd：该方式是使用smb自己的工具smbpasswd来给系统用户（真实用户或者虚拟用户）设置一个Samba密码，客户端就用这个密码来访问Samba的资源。smbpasswd文件默认在/etc/samba目录下，不过有时候要手工建立该文件。<br>2.tdbsam：
+该方式则是使用一个数据库文件来建立用户数据库。数据库文件叫passdb.tdb，默认在/etc/samba目录下。passdb.tdb用户数据库
+可以使用smbpasswd 
+–a来建立Samba用户，不过要建立的Samba用户必须先是系统用户。我们也可以使用pdbedit命令来建立Samba账户。pdbedit命令的
+参数很多，我们列出几个主要的。<br>　　pdbedit –a username：新建Samba账户。<br>　　pdbedit –x username：删除Samba账户。<br>　　pdbedit –L：列出Samba用户列表，读取passdb.tdb数据库文件。<br>　　pdbedit –Lv：列出Samba用户列表的详细信息。<br>　　pdbedit –c “[D]” –u username：暂停该Samba用户的账号。<br>　　pdbedit –c “[]” –u username：恢复该Samba用户的账号。<br>3.ldapsam：该方式则是基于LDAP的账户管理方式来验证用户。首先要建立LDAP服务，然后设置“passdb backend = ldapsam:ldap://LDAP Server”</p>
+<p>encrypt passwords = yes/no<br>说明：是否将认证密码加密。因为现在windows操作系统都是使用加密密码，所以一般要开启此项。不过配置文件默认已开启。</p>
+<p>smb passwd file = /etc/samba/smbpasswd<br>说明：用来定义samba用户的密码文件。smbpasswd文件如果没有那就要手工新建。</p>
+<p>username map = /etc/samba/smbusers<br>说明：用来定义用户名映射，比如可以将root换成administrator、admin等。不过要事先在smbusers文件中定义好。比如：root
+ = administrator admin，这样就可以用administrator或admin这两个用户来代替root登陆Samba 
+Server，更贴近windows用户的习惯。</p>
+<p>guest account = nobody<br>说明：用来设置guest用户名。</p>
+<p>socket options = TCP_NODELAY SO_RCVBUF=8192 SO_SNDBUF=8192<br>说明：用来设置服务器和客户端之间会话的Socket选项，可以优化传输速度。</p>
+<p>domain master = yes/no<br>说明：设置Samba服务器是否要成为网域主浏览器，网域主浏览器可以管理跨子网域的浏览服务。</p>
+<p>local master = yes/no<br>说明：local master用来指定Samba Server是否试图成为本地网域主浏览器。如果设为no，则永远不会成为本地网域主浏览器。但是即使设置为yes，也不等于该Samba Server就能成为主浏览器，还需要参加选举。</p>
+<p>preferred master = yes/no<br>说明：设置Samba Server一开机就强迫进行主浏览器选举，可以提高Samba 
+Server成为本地网域主浏览器的机会。如果该参数指定为yes时，最好把domain 
+master也指定为yes。使用该参数时要注意：如果在本Samba Server所在的子网有其他的机器（不论是windows 
+NT还是其他Samba Server）也指定为首要主浏览器时，那么这些机器将会因为争夺主浏览器而在网络上大发广播，影响网络性能。<br>如果同一个区域内有多台Samba Server，将上面三个参数设定在一台即可。</p>
+<p>os level = 200<br>说明：设置samba服务器的os level。该参数决定Samba Server是否有机会成为本地网域的主浏览器。os 
+level从0到255，winNT的os level是32，win95/98的os level是1。Windows 2000的os 
+level是64。如果设置为0，则意味着Samba Server将失去浏览选择。如果想让Samba Server成为PDC，那么将它的os 
+level值设大些。</p>
+<p>domain logons = yes/no<br>说明：设置Samba Server是否要做为本地域控制器。主域控制器和备份域控制器都需要开启此项。</p>
+<p>logon&nbsp;script = %u.bat<br>说明：当使用者用windows客户端登陆，那么Samba将提供一个登陆档。如果设置成%u.bat，那么就要为每个用户提供一个登陆档。如果人比较多，
+那就比较麻烦。可以设置成一个具体的文件名，比如start.bat，那么用户登陆后都会去执行start.bat，而不用为每个用户设定一个登陆档了。
+这个文件要放置在[netlogon]的path设置的目录路径下。</p>
+<p>wins support = yes/no<br>说明：设置samba服务器是否提供wins服务。</p>
+<p>wins server = wins服务器IP地址<br>说明：设置Samba Server是否使用别的wins服务器提供wins服务。</p>
+<p>wins proxy = yes/no<br>说明：设置Samba Server是否开启wins代理服务。 </p>
+<p>dns proxy = yes/no<br>说明：设置Samba Server是否开启dns代理服务。 </p>
+<p>load printers = yes/no<br>说明：设置是否在启动Samba时就共享打印机。 </p>
+<p>printcap name = cups<br>说明：设置共享打印机的配置文件。</p>
+<p>printing = cups<br>说明：设置Samba共享打印机的类型。现在支持的打印系统有：bsd, sysv, plp, lprng, aix, hpux, qnx<br>&nbsp;<br><strong>共享参数：</strong><br>#================== Share Definitions ==================<br>[共享名]</p>
+<p>comment = 任意字符串<br>说明：comment是对该共享的描述，可以是任意字符串。</p>
+<p>path = 共享目录路径<br>说
+明：path用来指定共享目录的路径。可以用%u、%m这样的宏来代替路径里的unix用户和客户机的Netbios名，用宏表示主要用于[homes]
+共享域。例如：如果我们不打算用home段做为客户的共享，而是在/home/share/下为每个Linux用户以他的用户名建个目录，作为他的共享目
+录，这样path就可以写成：path = /home/share/%u; 
+。用户在连接到这共享时具体的路径会被他的用户名代替，要注意这个用户名路径一定要存在，否则，客户机在访问时会找不到网络路径。同样，如果我们不是以用
+户来划分目录，而是以客户机来划分目录，为网络上每台可以访问samba的机器都各自建个以它的netbios名的路径，作为不同机器的共享资源，就可以
+这样写：path = /home/share/%m 。</p>
+<p>browseable = yes/no<br>说明：browseable用来指定该共享是否可以浏览。</p>
+<p>writable = yes/no<br>说明：writable用来指定该共享路径是否可写。</p>
+<p>available = yes/no<br>说明：available用来指定该共享资源是否可用。</p>
+<p>admin users = 该共享的管理者<br>说明：admin users用来指定该共享的管理员（对该共享具有完全控制权限）。在samba 3.0中，如果用户验证方式设置成“security=share”时，此项无效。<br>例如：admin users =david，sandy（多个用户中间用逗号隔开）。</p>
+<p>valid users = 允许访问该共享的用户<br>说明：valid users用来指定允许访问该共享资源的用户。<br>例如：valid users = david，@dave，@tech（多个用户或者组中间用逗号隔开，如果要加入一个组就用“@组名”表示。）</p>
+<p>invalid users = 禁止访问该共享的用户<br>说明：invalid users用来指定不允许访问该共享资源的用户。<br>例如：invalid users = root，@bob（多个用户或者组中间用逗号隔开。）</p>
+<p>write list = 允许写入该共享的用户<br>说明：write list用来指定可以在该共享下写入文件的用户。<br>例如：write list = david，@dave</p>
+<p>public = yes/no<br>说明：public用来指定该共享是否允许guest账户访问。</p>
+<p>guest ok = yes/no<br>说明：意义同“public”。<br>&nbsp;<br>几个特殊共享：<br>[homes]<br>comment = Home Directories<br>browseable = no<br>writable = yes<br>valid users = %S<br>; valid users = MYDOMAIN\%S<br>&nbsp;<br>[printers]<br>comment = All Printers<br>path = /var/spool/samba<br>browseable = no<br>guest ok = no<br>writable = no<br>printable = yes<br>&nbsp;<br>[netlogon]<br>comment = Network Logon Service<br>path = /var/lib/samba/netlogon<br>guest ok = yes<br>writable = no<br>share modes = no<br>&nbsp;<br>[Profiles]<br>path = /var/lib/samba/profiles<br>browseable = no<br>guest ok = yes</p>
+<p>Samba安装好后，使用testparm命令可以测试smb.conf配置是否正确。使用testparm –v命令可以详细的列出smb.conf支持的配置参数。</p>
+<p>默认的smb.conf有很多个选项和内容，比较繁琐，这里我们按照案例来讲解配置选项，先备份一下自己的smb.conf文件，然后重新建立一个smb.conf。</p>
+<p># cp -p /etc/samba/smb.conf&nbsp;&nbsp;&nbsp; /etc/samba/smb.conf.orig</p>
+<p><strong>案例一</strong>、公司现有一个工作组workgroup，需要添加samba服务器作为文件服务器，并发布共享目录/share，共享名为public，此共享目录允许所有员工访问。</p>
+<p>a.&nbsp;修改samba的主配置文件如下： </p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #000000;">#======================= Global Settings =====================================
+
+[global]                                                  <span style="color: #000000;"><span style="color: #000000;">//该设置与Samba服务整体运行环境有关，它的设置项目针对所有共享资源</span></span>       
+
+# ----------------------- Network Related Options -------------------------
+#
+# workgroup = NT-Domain-Name or Workgroup-Name, eg: MIDEARTH
+#
+# server string is the equivalent of the NT Description field
+#
+# netbios name can be used to specify a server name not tied to the hostname
+
+        workgroup = WORKGROUP                             //定义工作组，也就是windows中的工作组概念
+        server string = David Samba Server Version %v     //定义Samba服务器的简要说明
+        netbios name = DavidSamba                         //定义windows中显示出来的计算机名称
+
+# --------------------------- Logging Options -----------------------------
+#
+# Log File let you specify where to put logs and how to split them up.
+
+        log file = /var/log/samba/log.%m                  //定义Samba用户的日志文件，%m代表客户端主机名
+                                                          //<span style="color: #000000;">Samba服务器会在指定的目录中为每个登陆主机建立不同的日志文件</span>
+# ----------------------- Standalone Server Options ------------------------
+#
+# Scurity can be set to user, share(deprecated) or server(deprecated)
+
+        security = share                                  //共享级别，用户不需要账号和密码即可访问
+
+#============================ Share Definitions ==============================
+
+[public]                                                  <span style="color: #000000;">//设置针对的是共享目录个别的设置，只对当前的共享资源起作用</span>
+        comment = Public Stuff                            //对共享目录的说明文件，自己可以定义说明信息
+        path = /share                                     //用来指定共享的目录，必选项
+        public = yes                                      //所有人可查看,等效于guest ok = yes</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>b. 建立共享目录</p>
+<p>上面设置了共享目录为/share，下面就需要建立/share目录：</p>
+<p><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012121414563647.jpg" alt=""></p>
+<p>由于要设置匿名用户可以下载或上传共享文件，所以要给/share目录授权为nobody权限。</p>
+<p><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012121415280950.jpg" alt=""></p>
+<p>c. 重启smb服务</p>
+<p><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012121415310439.jpg" alt=""></p>
+<p>d. 测试smb.conf配置是否正确</p>
+<p><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012121813363063.jpg" alt=""></p>
+<p>e. 访问Samba服务器的共享文件</p>
+<ul>
+<li>在Linux下访问Samba服务器的共享文件</li>
+</ul>
+<p><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012121416443010.jpg" alt=""></p>
+<ul>
+<li>在windows下访问Samba服务器的共享文件</li>
+</ul>
+<p><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012121416484869.jpg" alt=""></p>
+<p><strong>案例二</strong>、公司现有多个部门，因工作需要，将TS部的资料存放在samba服务器的/ts 目录中集中管理，以便TS人员浏览，并且该目录只允许TS部员工访问。</p>
+<p>a. 添加TS部组和用户</p>
+<p><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012121712003531.jpg" alt=""></p>
+<p>建立用户的同时加入到相应的组中的方式：useradd -g 组名 用户名</p>
+<p>b. 在根目录下建立/ts 文件夹</p>
+<p><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012121712013422.jpg" alt="" height="92" width="857"></p>
+<p>c. 将刚才建立的两个帐户添加到samba的账户中</p>
+<p><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012121712021159.jpg" alt=""></p>
+<p>d. 修改主配置文件如下：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #000000;">#======================= Global Settings =====================================
+
+[global]
+
+# ----------------------- Network Related Options -------------------------
+#
+# workgroup = NT-Domain-Name or Workgroup-Name, eg: MIDEARTH
+#
+# server string is the equivalent of the NT Description field
+#
+# netbios name can be used to specify a server name not tied to the hostname
+
+        workgroup = WORKGROUP
+        server string = David Samba Server Version %v
+        netbios name = DavidSamba
+
+# --------------------------- Logging Options -----------------------------
+#
+# Log File let you specify where to put logs and how to split them up.
+
+        log file = /var/log/samba/log.%m
+
+# ----------------------- Standalone Server Options ------------------------
+#
+# Scurity can be set to user, share(deprecated) or server(deprecated)
+
+        security = user<span style="color: #000000;">                                   //用户级别，由提供服务的Samba服务器负责检查账户和密码</span>
+
+#============================ Share Definitions ==============================
+
+[homes]                                                   //设置用户宿主目录
+        comment = Home Directories
+        browseable = no
+        writable = yes
+;       valid users = %S
+;       valid users = MYDOMAIN\%S
+
+[public]
+        comment = Public Stuff
+        path = /share
+        public = yes
+
+[ts]                                                      //ts 组目录，只允许ts组成员访问
+        comment = TS
+        path = /ts
+        valid users = @ts</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>e. 重新加载配置</p>
+<p><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012121712045822.jpg" alt=""></p>
+<p>f. 到windows客户端验证，访问\\10.0.0.163，提示输入用户名和密码，在此输入sandy验证，如下图：</p>
+<p><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012121712072821.jpg" alt=""></p>
+<p>g. 访问成功，可以看到公共的public目录，用户sandy的宿主目录，和其有权限访问的ts目录</p>
+<p><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012121712092150.jpg" alt=""></p>
+<p>h. 进入ts目录，有刚才创建的newyork.city文件</p>
+<p><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012121712102863.jpg" alt=""></p>
+<p><strong>案例三</strong>、实现不同的用户访问同一个共享目录具有不同的权限，便于管理和维护。基本上能满足一些企业用户的需求。（整理自网络）</p>
+<p>a. 需求</p>
+<p>1. 某公司有5个大部门，分别为：人事行政部（HR &amp; Admin Dept）、财务部（Financial Management 
+Dept）、技术支持部（Technical Support Dept）、项目部（Project Dept）、客服部（Customer 
+Service Dept）。<br>2. 各部门的文件夹只允许本部门员工有权访问；各部门之间交流性质的文件放到公用文件夹中。<br>3. 每个部门都有一个管理本部门文件夹的管理员账号和一个只能新建和查看文件的普通用户权限的账号。<br>4. 公用文件夹中分为存放工具的文件夹和存放各部门共享文件的文件夹。<br>5. 对于各部门自己的文件夹，各部门管理员具有完全控制权限，而各部门普通用户可以在该部门文件夹下新建文件及文件夹，并且对于自己新建的文件及文件夹有完全控制权限，对于管理员新建及上传的文件和文件夹只能访问，不能更改和删除。不是本部门用户不能访问本部门文件夹。<br>6.
+ 
+对于公用文件夹中的各部门共享文件夹，各部门管理员具有完全控制权限，而各部门普通用户可以在该部门文件夹下新建文件及文件夹，并且对于自己新建的文件及
+文件夹有完全控制权限，对于管理员新建及上传的文件和文件夹只能访问，不能更改和删除。本部门用户（包括管理员和普通用户）在访问其他部门共享文件夹时，
+只能查看不能修改删除新建。对于存放工具的文件夹，只有管理员有权限，其他用户只能访问。</p>
+<p>b. 规划</p>
+<p>根据公司需求情况，现做出如下规划：<br>1. 在系统分区时单独分一个Company的区，在该区下有以下几个文件夹：HR、 FM、TS、PRO、CS和Share。在Share下又有以下几个文件夹：HR、FM、TS、PRO、CS和Tools。<br>2. 各部门对应的文件夹由各部门自己管理，Tools文件夹由管理员维护。<br>3. HR管理员账号：hradmin；普通用户账号：hruser。<br>&nbsp;&nbsp; FM管理员账号：fmadmin；普通用户账号：fmuser。<br>&nbsp;&nbsp; TS管理员账号：tsadmin；普通用户账号：tsuser。<br>&nbsp;&nbsp; PRO管理员账号：proadmin；普通用户账号：prouser。<br>&nbsp;&nbsp; CS管理员账号：csadmin；普通用户账号：csuser。<br>&nbsp;&nbsp; Tools管理员账号：admin。</p>
+<p>文件夹之间的关系见下图：</p>
+<p><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012121811472081.jpg" alt=""></p>
+<p>c. 新建用户</p>
+<p>使用useradd命令新建系统账户，然后再使用smbpasswd –a建立SMB账户。</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #000000;">[root@TS-DEV ~]# useradd -s /sbin/nologin hradmin          
+[root@TS-DEV ~]# useradd -g hradmin -s /sbin/nologin hruser
+[root@TS-DEV ~]# useradd -s /sbin/nologin fmadmin            
+[root@TS-DEV ~]# useradd -g fmadmin -s /sbin/nologin fmuser     
+[root@TS-DEV ~]# useradd -s /sbin/nologin tsadmin
+[root@TS-DEV ~]# useradd -g tsadmin -s /sbin/nologin tsuser
+[root@TS-DEV ~]# useradd -s /sbin/nologin proadmin         
+[root@TS-DEV ~]# useradd -g proadmin -s /sbin/nologin prouser 
+[root@TS-DEV ~]# useradd -s /sbin/nologin csadmin
+[root@TS-DEV ~]# useradd -g csadmin -s /sbin/nologin csuser
+[root@TS-DEV ~]# useradd -s /sbin/nologin admin            
+[root@TS-DEV ~]# 
+
+[root@TS-DEV ~]# smbpasswd -a hradmin
+New SMB password:
+Retype new SMB password:
+Added user fmuser.
+[root@TS-DEV ~]# smbpasswd -a hruser
+[root@TS-DEV ~]# smbpasswd -a fmadmin
+[root@TS-DEV ~]# smbpasswd -a fmuser
+[root@TS-DEV ~]# smbpasswd -a tsadmin
+[root@TS-DEV ~]# smbpasswd -a tsuser
+[root@TS-DEV ~]# smbpasswd -a proadmin
+[root@TS-DEV ~]# smbpasswd -a prouser
+[root@TS-DEV ~]# smbpasswd -a csadmin 
+[root@TS-DEV ~]# smbpasswd -a csuser
+[root@TS-DEV ~]# smbpasswd -a admin    
+[root@TS-DEV ~]# </span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>d. 新建目录</p>
+<p><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012121811505944.jpg" alt=""></p>
+<p>e. 更改目录属性</p>
+<div class="cnblogs_code">
+<pre><span style="color: #000000;">[root@TS-DEV Company]# chown hradmin.hradmin HR
+[root@TS-DEV Company]# chown fmadmin.fmadmin FM
+[root@TS-DEV Company]# chown tsadmin.tsadmin TS    
+[root@TS-DEV Company]# chown proadmin.proadmin PRO    
+[root@TS-DEV Company]# chown csadmin.csadmin CS      
+[root@TS-DEV Company]# chown admin.admin Share  </span></pre>
+</div>
+<p><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012121811542875.jpg" alt=""></p>
+<div class="cnblogs_code">
+<pre><span style="color: #000000;">[root@TS-DEV Company]# cd Share/
+[root@TS-DEV Share]# chown hradmin.hradmin HR &amp;&amp; chown fmadmin.fmadmin FM &amp;&amp; chown tsadmin.tsadmin TS &amp;&amp; chown proadmin.proadmin PRO &amp;&amp; chown csadmin.csadmin CS &amp;&amp; chown admin.admin Tools
+[root@TS-DEV Share]# chmod 1775 HR FM TS PRO CS</span></pre>
+</div>
+<p><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012121811523110.jpg" alt="" height="295" width="868"></p>
+<p>f. 配置samba如下：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #000000;">#======================= Global Settings =====================================
+
+[global]
+
+# ----------------------- Network Related Options -------------------------
+#
+# workgroup = NT-Domain-Name or Workgroup-Name, eg: MIDEARTH
+#
+# server string is the equivalent of the NT Description field
+#
+# netbios name can be used to specify a server name not tied to the hostname
+
+        workgroup = WORKGROUP
+        server string = David Samba Server Version %v
+        netbios name = DavidSamba
+
+# --------------------------- Logging Options -----------------------------
+#
+# Log File let you specify where to put logs and how to split them up.
+
+        log file = /var/log/samba/log.%m
+        max log size = 50
+
+# ----------------------- Standalone Server Options ------------------------
+#
+# Scurity can be set to user, share(deprecated) or server(deprecated)
+
+        security = user
+        passdb backend = tdbsam
+
+#============================ Share Definitions ==============================
+
+[HR]
+     comment = This is a directory of HR.
+     path = /Company/HR/
+     public = no
+     admin users = hradmin
+     valid users = @hradmin
+     writable = yes
+     create mask = 0750
+     directory mask = 0750
+ 
+[FM]
+     comment = This is a directory of FM.
+     path = /Company/FM/
+     public = no
+     admin users = fmadmin
+     valid users = @fmadmin
+     writable = yes
+     create mask = 0750
+     directory mask = 0750
+ 
+[TS]
+     comment = This is a directory of TS.
+     path = /Company/TS/
+     public = no
+     admin users = tsadmin
+     valid users = @tsadmin
+     writable = yes
+     create mask = 0750
+     directory mask = 0750
+ 
+[PRO]
+     comment = This is a PRO directory.
+     path = /Company/PRO/
+     public = no
+     admin users = proadmin
+     valid users = @proadmin
+     writable = yes
+     create mask = 0750
+     directory mask = 0750
+ 
+[CS]
+     comment = This is a directory of CS.
+     path = /Company/CS/
+     public = no
+     admin users = csadmin
+     valid users = @csadmin
+     writable = yes
+     create mask = 0750
+     directory mask = 0750
+ 
+[Share]
+     comment = This is a share directory.
+     path = /Company/Share/
+     public = no
+     valid users = admin,@hradmin,@fmadmin,@tsadmin,@proadmin,@csadmin
+     writable = yes
+     create mask = 0755
+     directory mask = 0755</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>g. 测试</p>
+<p>以 hradmin登录系统</p>
+<p><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012121812331131.jpg" alt=""></p>
+<p>试图访问ts部门文件夹，要求输入用户名及密码</p>
+<p><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012121812332985.jpg" alt="" height="476" width="836"></p>
+<p>试图在\\10.0.0.163\Share\TS下新建文件</p>
+<p><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012121812334121.jpg" alt=""></p>
+<p>在自己部门所属文件夹下新建成功</p>
+<p><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012121812334948.jpg" alt=""></p>
+<p>其他测试自行完成。</p>
+<p>配置完毕。</p>
+<p><span style="font-size: 16px;"><strong><span style="color: #800000;">五、将共享目录映射成Windows的驱动器</span></strong></span></p>
+<p>将Samba共享的public目录，映射成 Windows 的一个驱动器盘符：</p>
+<p>a. 右击“计算机”--&gt;“映射网络驱动器”</p>
+<p><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012121716061144.jpg" alt=""></p>
+<p>b. 在文件夹栏输入共享地址及路径，点击“完成”输入用户名和密码</p>
+<p><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012121716062321.jpg" alt=""></p>
+<p>c. 映射完毕后，打开资源管理器可以看到映射的共享目录</p>
+<p><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012121716063215.jpg" alt=""></p>
+<p><span style="color: #800000;"><em><strong>Tips：</strong></em></span></p>
+<p>在windows下通过“\\ip地址”的方式访问其它文件资源时，一般第一次需要输入密码，以后就无需输入密码直接登陆了，那么如果我们要切换到其它Samba用户怎么办呢？可以在windows下执行如下指令实现：<br>首
+先通过开始--&gt;运行--&gt;cmd 输入：“net use”命令查看现有的连接，然后执行“net use 
+\\Samba服务器IP地址或者netbios名称\ipc$&nbsp; /del”，删除Samba服务器已经建立的连接。或者执行“net 
+use * /del”将现在所有的连接全部删除。最后，再次执行“\\ip地址”时，就可以切换用户了。<br><br><span style="font-size: 16px;"><strong><span style="color: #800000;">六、Linux客户端访问操作</span></strong></span></p>
+<p>上面介绍了windows客户端访问Samba服务器的操作，那么在Linux作为客户端时，查看其它Linux Samba服务器共享的文件时，应该如何操作呢？</p>
+<p>这就要用到smbclient这个工具，系统默认自带了这个命令，Smbclient常见用法介绍如下：</p>
+<p>1、查看Samba服务器的共享资料</p>
+<p># smbclient&nbsp; –L&nbsp; //Samba服务器的ip地址&nbsp; -U&nbsp; Samba用户名</p>
+<p>&nbsp;“-L”即为list的含义，“-U”是user的意思，如果Samba服务器是无密码访问的话，可以省略“-U&nbsp; Samba用户名”。</p>
+<p>例如：samba需要密码登陆时，查看共享方法如下：</p>
+<p># smbclient&nbsp; -L //10.0.0.163/public –U david</p>
+<p><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012121716361653.jpg" alt=""></p>
+<p>Samba无密码访问时，执行如下命令：</p>
+<p># smbclient&nbsp; -L //10.0.0.163/public</p>
+<p><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012121716433184.jpg" alt=""></p>
+<p>password: 直接回车即可。</p>
+<p>2、登陆Samba服务器</p>
+<p>如果需要在Linux客户端登陆Samba服务器，用法如下：</p>
+<p># smbclient&nbsp; //Samba服务器的ip地址&nbsp; -U&nbsp; Samba用户名</p>
+<p>请看下面执行的操作：</p>
+<p># smbclient //10.0.0.163/public -U david</p>
+<p>smb: \&gt; 
+?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ //在这里输入?即可查看在smb命令行可用的所有命令。</p>
+<p><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012121716484043.jpg" alt=""></p>
+<p>操作过程与登陆FTP服务器很类似，登陆Samba服务器后，就可以进行文件的上传与下载，如果有足够的权限，还可以进行修改文件操作。</p>
+<p>此外，Samba服务器共享出来的文件还可以在Linux客户端进行挂载，这就要用到mount命令，如下所示：</p>
+<p># mount -t cifs -l //10.0.0.163/public /mnt/samba/</p>
+<p><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012121717193955.jpg" alt=""></p>
+<p><span style="font-size: 16px;"><strong><span style="color: #800000;">七、Samba Web管理工具 SWAT</span></strong></span></p>
+<p>SWAT(<span style="font-family: 微软雅黑;">Samba WEB Administration Tool</span>)
+ 是通过浏览器对 Samba 进行管理的工具之一。通过 SWAT，可以在 Samba 允许访问范围内的客户端，用浏览器对服务端的 Samba 
+进行控制。在线文档的阅览、smb.conf 的确认和编辑，以及密码的变更、服务的重启等等都可以通过 SWAT 来完成，它的直观让 Samba 
+变得温和化，对那些不喜欢文本界面管理服务器的朋友来说，是一个强大的工具。</p>
+<p>swat工具嵌套在xinetd超级守护进程中，要通过启用xinetd进程来启用swat。因此要先安装xinetd工具包，然后安装swat工具包。上面已经安装过samba-swat-3.5.10-125.el6.x86_64，这里不再赘述。</p>
+<p>1、配置swat</p>
+<p>因为swat是xinetd超级守护进程的一个子进程，所以swat工具配置文件在xinetd目录中。我们要设置swat配置文件，开启此子进程，以便在启用xinetd进程是来启用swat。swat配置文件在/etc/xinetd.d目录中。</p>
+<p><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012121813403875.jpg" alt="" height="71" width="875"></p>
+<p>打开并编辑 /etc/xinetd.d/swat</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #000000;"># default: off
+# description: SWAT is the Samba Web Admin Tool. Use swat \
+#              to configure your Samba server. To use SWAT, \
+#              connect to port 901 with your favorite web browser.
+service swat
+{
+        port            = 901                    //<span style="font-family: 微软雅黑;">swat默认使用tcp的901端口, 可以修改</span>
+        socket_type     = stream                 //<span style="font-family: 微软雅黑;">通过web来配置samba, 默认使用root账号进入, 可以修改成其他的系统用户</span>
+        wait            = no
+        only_from       = 127.0.0.1              <br><span style="color: #000000;">        only_from       = 10.0.0.0               //<span style="color: #000000;"><span style="color: #000000;"><span style="font-family: 微软雅黑;">添加此行</span></span></span><span style="color: #000000;"><span style="color: #000000;"><span style="font-family: 微软雅黑;">,</span></span></span> <span style="font-family: 微软雅黑;">将“only_from=127.0.0.1”改成“only_from=10.0.0.0”, 只允许内网范围对SWAT进行访问</span></span>
+        user            = root
+        server          = /usr/sbin/swat         //<span style="font-family: 微软雅黑;">swat的执行程序默认在/usr/sbin目录下</span>
+        log_on_failure  += USERID
+        disable         = yes                    //<span style="font-family: 微软雅黑;">将“disable=yes”改成“disable=no”, 这样swat子进程就可以随xinetd超级守护进程一起启动了</span>
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>2、启动 swat</p>
+<p>因为swat是xinetd的子进程，所以只要启用了xinetd，那么swat也就会伴随xinetd启动。</p>
+<p><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012121813431439.jpg" alt=""></p>
+<p>3、打开 swat</p>
+<p>在服务端启动 swat后，我们就可以通过 swat允许范围内的客户机的浏览器中，通过 http://服务器的内网IP:901 来访问服务端的 swat了，输入 root用户的用户名及密码进入 swat的管理首页，如下所示：</p>
+<p><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012121813493115.jpg" alt=""></p>
+<p>swat管理中心的首页</p>
+<p><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012121813501787.jpg" alt="" height="451" width="849"></p>
+<p>通过 swat管理 Samba 与直接修改 smb.conf 的方式，在本质上并无差异，但通过浏览器访问的方式，可以使 Samba 的管理更加温和化，更加适用于不擅长使用文本界面、直接修改配置文件的朋友。</p>
+<p>4、通过swat配置samba</p>
+<p>在swat页面我们可以看到有8个选项，每个选项可以配置samba的不同功能。</p>
+<p style="margin-left: 30px;">HOME：Samba相关程序及文件说明。</p>
+<p style="margin-left: 30px;">GLOBALS：设置Samba的全局参数。即smb.conf文件的[global]。</p>
+<p style="margin-left: 30px;">SHARES：设置Samba的共享参数。</p>
+<p style="margin-left: 30px;">PRINTERS：设置Samba的打印参数。</p>
+<p style="margin-left: 30px;">WIZARD：Samba配置向导。</p>
+<p style="margin-left: 30px;">STATUS：查看和设置Samba的服务状况。</p>
+<p style="margin-left: 30px;">VIEW：查看Samba的文本配置文件，即smb.conf。</p>
+<p style="margin-left: 30px;">PASSWORD：设置Samba用户，可以修改密码，新建删除用户。</p>
+<p>详细设置请自行查阅资料，以下仅供参考：</p>
+<p><a href="http://yuanbin.blog.51cto.com/363003/117105" target="_blank">http://yuanbin.blog.51cto.com/363003/117105</a></p>
+<p>至此，Samba服务器的所有配置完成。</p>
+<p>&nbsp;</p>
+<hr style="font: 14px/25px verdana, Arial, Helvetica, sans-serif; margin: 0px; padding: 0px; color: #333333; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; white-space: normal; orphans: 2; widows: 2; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;">
+<p style="font: 14px/25px verdana, Arial, Helvetica, sans-serif; margin: 10px auto; padding: 0px; color: #333333; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; white-space: normal; orphans: 2; widows: 2; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;"><span style="margin: 0px; padding: 0px; color: #800000;"><strong style="margin: 0px; padding: 0px;">David Camp</strong></span></p>
+<ul style="font: 14px/25px verdana, Arial, Helvetica, sans-serif; margin: 0px 0px 0px 45px; padding: 0px; color: #333333; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; list-style-type: disc; white-space: normal; orphans: 2; widows: 2; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;">
+<li style="list-style: inherit; margin: 0px; padding: 0px;">技术交流，请加QQ群：</li>
+</ul>
+<p style="list-style: inherit; margin: 0px; padding: 0px;">　　　　<span>系统运维技术分享Ⅲ：416491168</span></p>
+<ul style="font: 14px/25px verdana, Arial, Helvetica, sans-serif; margin: 0px 0px 0px 45px; padding: 0px; color: #333333; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; list-style-type: disc; white-space: normal; orphans: 2; widows: 2; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;">
+<li style="list-style: inherit; margin: 0px; padding: 0px;">业务合作，请联系作者QQ：562866602</li>
+<li style="list-style: inherit; margin: 0px; padding: 0px;">我的微信号：mchina_tang</li>
+<li style="list-style: inherit; margin: 0px; padding: 0px;">给我写信：mchina_tang@qq.com</li>
+<li style="list-style: inherit; margin: 0px; padding: 0px;">我的地址：江苏·苏州</li>
+</ul>
+<p style="font: 14px/25px verdana, Arial, Helvetica, sans-serif; margin: 10px auto; padding: 0px; color: #333333; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; white-space: normal; orphans: 2; widows: 2; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;"><span style="margin: 0px; padding: 0px; color: #800000;"><strong style="margin: 0px; padding: 0px;"><strong style="margin: 0px; padding: 0px;"><strong style="margin: 0px; padding: 0px;">我们永远相信，分享是一种美德 |&nbsp;</strong></strong>We Believe, Great People Share Knowledge...</strong></span></p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/mchina/category/381457.html">Linux Server</a></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/mchina/tag/linux/">linux</a>, <a href="http://www.cnblogs.com/mchina/tag/Samba/">Samba</a>, <a href="http://www.cnblogs.com/mchina/tag/%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB/">文件共享</a>, <a href="http://www.cnblogs.com/mchina/tag/swat/">swat</a></div>
+<div id="blog_post_info"><div id="green_channel">
+绿色通道：
+<a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(2816717,cb_blogId,1);green_channel_success(this,'谢谢推荐！');">好文要顶</a>
+<a id="green_channel_follow" onclick="c_follow();" href="javascript:void(0);">关注我</a>
+<a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a><a id="green_channel_contact" href="http://msg.cnblogs.com/send/David_Tang" target="_blank">与我联系</a>
+<a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/icon_weibo_24.png" alt=""></a>
+</div>
+<div id="author_profile">
+<div id="author_profile_info" class="author_profile_info">
+<a href="http://home.cnblogs.com/u/mchina/" target="_blank"><img src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/u370046.jpg" class="author_avatar" alt=""></a>
+<div id="author_profile_detail" class="author_profile_info">
+<a href="http://home.cnblogs.com/u/mchina/">David_Tang</a><br>
+<a href="http://home.cnblogs.com/u/mchina/followees">关注 - 3</a><br>
+<a href="http://home.cnblogs.com/u/mchina/followers">粉丝 - 933</a>
+</div>
+</div>
+<div class="clear"></div>
+<div id="author_profile_honor"></div>
+<div id="author_profile_follow">
+    <a href="javascript:void(0);" onclick="c_follow();return false;">+加关注</a>
+</div>
+</div>
+<div id="div_digg">										
+    <div class="diggit" onclick="votePost(2816717,'Digg')">
+        <span class="diggnum" id="digg_count">23</span>
+    </div>
+	<div class="buryit" onclick="votePost(2816717,'Bury')"> 
+		<span class="burynum" id="bury_count">0</span>
+	</div>
+	<div class="clear"></div>	
+	<div class="diggword" id="digg_tips">
+    (请您对文章做出评价)
+    </div>	
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/mchina/archive/2012/11/28/2778779.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/mchina/archive/2012/11/28/2778779.html" title="发布于2012-11-28 15:05">CentOS 6.3下源码安装LAMP(Linux+Apache+Mysql+Php)环境</a><br><a href="http://www.cnblogs.com/mchina/archive/2012/12/24/2831220.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/mchina/archive/2012/12/24/2831220.html" title="发布于2012-12-24 16:40">Linux下显示IP地理位置信息的小工具-nali</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2012-12-18 15:13</span> <a href="http://www.cnblogs.com/mchina/">David_Tang</a> 阅读(<span id="post_view_count">84285</span>) 评论(<span id="post_comment_count">26</span>)  <a href="http://i.cnblogs.com/EditPosts.aspx?postid=2816717" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(2816717);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,isLogined=false,cb_blogId=107026,cb_entryId=2816717,cb_blogApp=currentBlogApp,cb_blogUserGuid='2e55a023-ab40-e111-9590-842b2b196315',cb_entryCreatedDate='2012/12/18 15:13:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<!--done-->
+<div class="feedback_area_title">评论列表</div>
+<div class="feedbackNoItems"></div>
+	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#2580485" class="layer">#1楼</a><a name="2580485" id="comment_anchor_2580485"></a>  <span class="comment_date">2012-12-18 15:21</span> <a id="a_comment_author_2580485" href="http://home.cnblogs.com/u/480782/" target="_blank">fanyijun</a> <a href="http://msg.cnblogs.com/send/fanyijun" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2580485" class="blog_comment_body">说的挺详细的   北京世纪互联 Q59478415</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2580485,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2580485,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#2580532" class="layer">#2楼</a><a name="2580532" id="comment_anchor_2580532"></a>  <span class="comment_date">2012-12-18 15:54</span> <a id="a_comment_author_2580532" href="http://home.cnblogs.com/u/227254/" target="_blank">玉菜园</a> <a href="http://msg.cnblogs.com/send/%E7%8E%89%E8%8F%9C%E5%9B%AD" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2580532" class="blog_comment_body">这个挺有用的</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2580532,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2580532,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#2580771" class="layer">#3楼</a><a name="2580771" id="comment_anchor_2580771"></a>  <span class="comment_date">2012-12-18 19:51</span> <a id="a_comment_author_2580771" href="http://www.cnblogs.com/woerwin/" target="_blank">liushuifeng</a> <a href="http://msg.cnblogs.com/send/liushuifeng" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2580771" class="blog_comment_body">很详细呵呵</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2580771,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2580771,'Bury',this)">反对(0)</a></div><span id="comment_2580771_avatar" style="display:none;">http://pic.cnblogs.com/face/u280458.jpg?id=04094628</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#2580776" class="layer">#4楼</a><a name="2580776" id="comment_anchor_2580776"></a>  <span class="comment_date">2012-12-18 19:53</span> <a id="a_comment_author_2580776" href="http://www.cnblogs.com/talywy/" target="_blank">Taly.W.Y</a> <a href="http://msg.cnblogs.com/send/Taly.W.Y" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2580776" class="blog_comment_body">前天在阿里云服务器上设置Samba服务，折腾老半天没搞成功...参考你这边文章，今晚再研究下...<br><br>我在网上查了一下，貌似Samba服务如果在外网服务器上得话，想要访问是不是要做些映射什么的？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2580776,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2580776,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#2754149" class="layer">#5楼</a><a name="2754149" id="comment_anchor_2754149"></a>  <span class="comment_date">2013-08-18 12:25</span> <a id="a_comment_author_2754149" href="http://home.cnblogs.com/u/549496/" target="_blank">亦亦亦</a> <a href="http://msg.cnblogs.com/send/%E4%BA%A6%E4%BA%A6%E4%BA%A6" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2754149" class="blog_comment_body">这个很实用。。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2754149,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2754149,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#2756557" class="layer">#6楼</a><a name="2756557" id="comment_anchor_2756557"></a>  <span class="comment_date">2013-08-21 09:35</span> <a id="a_comment_author_2756557" href="http://www.cnblogs.com/baiting0317/" target="_blank">baiting0317</a> <a href="http://msg.cnblogs.com/send/baiting0317" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2756557" class="blog_comment_body">很全面，感谢分享！！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2756557,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2756557,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#2760507" class="layer">#7楼</a><a name="2760507" id="comment_anchor_2760507"></a>  <span class="comment_date">2013-08-26 13:54</span> <a id="a_comment_author_2760507" href="http://home.cnblogs.com/u/545268/" target="_blank">rovegaby</a> <a href="http://msg.cnblogs.com/send/rovegaby" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2760507" class="blog_comment_body">你好  很详细我用你的方法配置 提示“您没有权限访问\\10.10.10.10。”<br>我用的samba-3.0.33-3.39.el5_8<br>我把SELinux 还有 iptables都关了 都不行，我的配置如下：<br>#useradd -s /sbin/nologin ecadmin<br>#useradd -g ecadmin -s /sbin/nologin ecuser<br>#mkdir -p /company/EC<br>#cd /company<br>#chown ecadmin.ecadmin EC<br>#vim /etc/samba/smb.conf<br>======================================<br>[global]<br>        workgroup = WORKGROUP<br>        server string = David Samba Server Version %v<br>        netbios name = DavidSamba<br>        log file = /var/log/samba/log.%m<br>        max log size = 50<br>        security = user<br>        passdb backend = tdbsam<br><br>[EC]<br>     comment = This is a directory of EC.<br>     path = /Company/EC/<br>     public = no<br>     admin users = ecadmin<br>     valid users = @ecadmin<br>     writable = yes<br>     create mask = 0750<br>     directory mask = 0750<br>================================<br>访问提示没权限。请帮下忙。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2760507,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2760507,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#2799447" class="layer">#8楼</a><a name="2799447" id="comment_anchor_2799447"></a>  <span class="comment_date">2013-10-22 18:27</span> <a id="a_comment_author_2799447" href="http://www.cnblogs.com/whendream/" target="_blank">网络爬虫</a> <a href="http://msg.cnblogs.com/send/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2799447" class="blog_comment_body">很牛逼啊，学习了。。。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2799447,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2799447,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#2801456" class="layer">#9楼</a><a name="2801456" id="comment_anchor_2801456"></a>  <span class="comment_date">2013-10-24 18:35</span> <a id="a_comment_author_2801456" href="http://home.cnblogs.com/u/576808/" target="_blank">文诗</a> <a href="http://msg.cnblogs.com/send/%E6%96%87%E8%AF%97" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2801456" class="blog_comment_body">我想问个问题？<br>就是我的samba里边给了写入的权限，为什么客户端不让上传东西呢！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2801456,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2801456,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#2801487" class="layer">#10楼</a><a name="2801487" id="comment_anchor_2801487"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2013-10-24 19:11</span> <a id="a_comment_author_2801487" href="http://www.cnblogs.com/mchina/" target="_blank">David_Tang</a> <a href="http://msg.cnblogs.com/send/David_Tang" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2801487" class="blog_comment_body"><a href="#2801456" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2801456);">@</a>文诗<br>检查一下文件系统本身的权限。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2801487,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2801487,'Bury',this)">反对(0)</a></div><span id="comment_2801487_avatar" style="display:none;">http://pic.cnblogs.com/face/u370046.png?id=27203716</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#2819928" class="layer">#11楼</a><a name="2819928" id="comment_anchor_2819928"></a>  <span class="comment_date">2013-11-20 08:56</span> <a id="a_comment_author_2819928" href="http://www.cnblogs.com/debuger/" target="_blank">_小基</a> <a href="http://msg.cnblogs.com/send/_%E5%B0%8F%E5%9F%BA" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2819928" class="blog_comment_body">案例三、实现不同的用户访问同一个共享目录具有不同的权限，便于管理和维护。基本上能满足一些企业用户的需求。（整理自网络） <br>在阿里云配置完全失败啊。配置和你上面的差不多？ 楼主方便联系？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2819928,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2819928,'Bury',this)">反对(0)</a></div><span id="comment_2819928_avatar" style="display:none;">http://pic.cnblogs.com/face/u321522.jpg?id=05130109</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#2823839" class="layer">#12楼</a><a name="2823839" id="comment_anchor_2823839"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2013-11-25 16:35</span> <a id="a_comment_author_2823839" href="http://www.cnblogs.com/mchina/" target="_blank">David_Tang</a> <a href="http://msg.cnblogs.com/send/David_Tang" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2823839" class="blog_comment_body"><a href="#2819928" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2819928);">@</a>_小基<br>简单的配置可以实现吗？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2823839,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2823839,'Bury',this)">反对(0)</a></div><span id="comment_2823839_avatar" style="display:none;">http://pic.cnblogs.com/face/u370046.png?id=27203716</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#2823844" class="layer">#13楼</a><a name="2823844" id="comment_anchor_2823844"></a>  <span class="comment_date">2013-11-25 16:39</span> <a id="a_comment_author_2823844" href="http://www.cnblogs.com/debuger/" target="_blank">_小基</a> <a href="http://msg.cnblogs.com/send/_%E5%B0%8F%E5%9F%BA" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2823844" class="blog_comment_body">嗯，经过不懈努力 解决了。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2823844,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2823844,'Bury',this)">反对(0)</a></div><span id="comment_2823844_avatar" style="display:none;">http://pic.cnblogs.com/face/u321522.jpg?id=05130109</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#2823845" class="layer">#14楼</a><a name="2823845" id="comment_anchor_2823845"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2013-11-25 16:41</span> <a id="a_comment_author_2823845" href="http://www.cnblogs.com/mchina/" target="_blank">David_Tang</a> <a href="http://msg.cnblogs.com/send/David_Tang" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2823845" class="blog_comment_body"><a href="#2823844" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2823844);">@</a>_小基<br>OK，好的。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2823845,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2823845,'Bury',this)">反对(0)</a></div><span id="comment_2823845_avatar" style="display:none;">http://pic.cnblogs.com/face/u370046.png?id=27203716</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#2823850" class="layer">#15楼</a><a name="2823850" id="comment_anchor_2823850"></a>  <span class="comment_date">2013-11-25 16:42</span> <a id="a_comment_author_2823850" href="http://www.cnblogs.com/debuger/" target="_blank">_小基</a> <a href="http://msg.cnblogs.com/send/_%E5%B0%8F%E5%9F%BA" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2823850" class="blog_comment_body">嘿嘿 ，感谢哈。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2823850,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2823850,'Bury',this)">反对(0)</a></div><span id="comment_2823850_avatar" style="display:none;">http://pic.cnblogs.com/face/u321522.jpg?id=05130109</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#2833928" class="layer">#16楼</a><a name="2833928" id="comment_anchor_2833928"></a>  <span class="comment_date">2013-12-10 09:46</span> <a id="a_comment_author_2833928" href="http://www.cnblogs.com/crazylogin/" target="_blank">涂圣飞</a> <a href="http://msg.cnblogs.com/send/%E6%B6%82%E5%9C%A3%E9%A3%9E" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2833928" class="blog_comment_body">再安装samba这快折腾好久了，就是没法安装成功。从网上下载的CentOS6.3. Samba安装程序存在于DVD2光碟中，我使用的是图形化界面，直接鼠标点击安装的。但是一直安装不成功。提示：Transaction Error.</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2833928,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2833928,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#2842753" class="layer">#17楼</a><a name="2842753" id="comment_anchor_2842753"></a>  <span class="comment_date">2013-12-23 11:24</span> <a id="a_comment_author_2842753" href="http://www.cnblogs.com/ychellboy/" target="_blank">ychellboy</a> <a href="http://msg.cnblogs.com/send/ychellboy" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2842753" class="blog_comment_body">很详细，感谢博主！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2842753,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2842753,'Bury',this)">反对(0)</a></div><span id="comment_2842753_avatar" style="display:none;">http://pic.cnblogs.com/face/u105996.jpg</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#2868025" class="layer">#18楼</a><a name="2868025" id="comment_anchor_2868025"></a>  <span class="comment_date">2014-01-25 10:03</span> <a id="a_comment_author_2868025" href="http://www.cnblogs.com/gotodsp/" target="_blank">.dsp</a> <a href="http://msg.cnblogs.com/send/.dsp" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2868025" class="blog_comment_body">谢谢博主</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2868025,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2868025,'Bury',this)">反对(0)</a></div><span id="comment_2868025_avatar" style="display:none;">http://pic.cnblogs.com/face/593345/20140716153435.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#2905825" class="layer">#19楼</a><a name="2905825" id="comment_anchor_2905825"></a>  <span class="comment_date">2014-03-27 21:25</span> <a id="a_comment_author_2905825" href="http://home.cnblogs.com/u/473759/" target="_blank">09527</a> <a href="http://msg.cnblogs.com/send/09527" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2905825" class="blog_comment_body">按楼主的步骤来。<br>磕磕碰碰，遇到过不少问题<br>问题1：用smbclient去联接 碰到如下提示<br>Server not using user level security and no password supplied.<br>Server requested LANMAN password (share-level security) but 'client lanman auth' is disabled<br>tree connect failed: NT_STATUS_ACCESS_DENIED<br><br>解决方法：<br>在[Globle]中加入<br>client lanman auth = Yes <br>lanman auth = Yes<br>client ntlmv2 auth = no<br>重启samba<br>问题解决了。<br><br><br>接下来又是个坎<br>smb: \&gt; ls<br>NT_STATUS_INVALID_PARAMETER listing \*<br><br>然后就不知道怎么办了<br>求救！！！！！！！！！！！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2905825,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2905825,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#2905844" class="layer">#20楼</a><a name="2905844" id="comment_anchor_2905844"></a>  <span class="comment_date">2014-03-27 21:58</span> <a id="a_comment_author_2905844" href="http://home.cnblogs.com/u/473759/" target="_blank">09527</a> <a href="http://msg.cnblogs.com/send/09527" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2905844" class="blog_comment_body">针对这个问题NT_STATUS_INVALID_PARAMETER listing \*<br><br>共享目录 没有设置共享<br>方法1：chcon -t samba_share_t /public<br>方法2：将SELINUX 关闭掉</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2905844,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2905844,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#2906950" class="layer">#21楼</a><a name="2906950" id="comment_anchor_2906950"></a>  <span class="comment_date">2014-03-29 13:30</span> <a id="a_comment_author_2906950" href="http://home.cnblogs.com/u/618465/" target="_blank">kvoice1970</a> <a href="http://msg.cnblogs.com/send/kvoice1970" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2906950" class="blog_comment_body">[root@kvoice1970 ~]# mount -t cifs //192.168.1.25/kvoice1970 /kvoice/kvoice1970/ -o usrename=j%123<br>mount: wrong fs type, bad option, bad superblock on //192.168.1.25/kvoice1970,<br>       missing codepage or helper program, or other error<br>       (for several filesystems (e.g. nfs, cifs) you might<br>       need a /sbin/mount.&lt;type&gt; helper program)<br>       In some cases useful info is found in syslog - try<br>       dmesg | tail  or so<br><br>请问这种写法不对吗？我怎么始终挂载不上，我用了<br>[root@kvoice1970 ~]# mount -t cifs -l //192.168.1.25/kvoice1970 /mnt<br>mount: wrong fs type, bad option, bad superblock on //192.168.1.25/kvoice1970,<br>       missing codepage or helper program, or other error<br>       (for several filesystems (e.g. nfs, cifs) you might<br>       need a /sbin/mount.&lt;type&gt; helper program)<br>       In some cases useful info is found in syslog - try<br>       dmesg | tail  or so<br><br>这种写法也不对，请问如何挂载才对呢？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2906950,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2906950,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#2943353" class="layer">#22楼</a><a name="2943353" id="comment_anchor_2943353"></a>  <span class="comment_date">2014-05-21 14:01</span> <a id="a_comment_author_2943353" href="http://www.cnblogs.com/yeadong/" target="_blank">yeadong</a> <a href="http://msg.cnblogs.com/send/yeadong" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2943353" class="blog_comment_body">好文章，学习了</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2943353,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2943353,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#3022129" class="layer">#23楼</a><a name="3022129" id="comment_anchor_3022129"></a>  <span class="comment_date">2014-09-03 10:10</span> <a id="a_comment_author_3022129" href="http://www.cnblogs.com/elesos/" target="_blank">www点elesos点com</a> <a href="http://msg.cnblogs.com/send/www%E7%82%B9elesos%E7%82%B9com" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3022129" class="blog_comment_body">光顾老朋友</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3022129,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3022129,'Bury',this)">反对(0)</a></div><span id="comment_3022129_avatar" style="display:none;">http://pic.cnblogs.com/face/u461810.jpg?id=05104633</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#3075589" class="layer">#24楼</a><a name="3075589" id="comment_anchor_3075589"></a>  <span class="comment_date">2014-12-01 14:50</span> <a id="a_comment_author_3075589" href="http://www.cnblogs.com/simpman/" target="_blank">simpman</a> <a href="http://msg.cnblogs.com/send/simpman" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3075589" class="blog_comment_body">先顶后看</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3075589,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3075589,'Bury',this)">反对(0)</a></div><span id="comment_3075589_avatar" style="display:none;">http://pic.cnblogs.com/face/467192/20130524091552.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#3092402" class="layer">#25楼</a><a name="3092402" id="comment_anchor_3092402"></a>  <span class="comment_date">2014-12-23 18:00</span> <a id="a_comment_author_3092402" href="http://home.cnblogs.com/u/706657/" target="_blank">itaotao</a> <a href="http://msg.cnblogs.com/send/itaotao" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3092402" class="blog_comment_body">我在做第三个配置时，我也是遇到与7楼同样得问题！windows 客户端不能访问：<br>1.文件夹权限如下<br>[root@Itaotao company]# ll /company/<br>总用量 12<br>drwxr-xr-x. 2 fmadmin fmadmin 4096 12月 23 16:36 FM<br>drwxr-xr-x. 2 hradmin hradmin 4096 12月 23 16:36 HR<br>drwxr-xr-x. 5 admin   admin   4096 12月 23 16:37 Share<br><br>2 配置文件--smb.conf-----<br>global 部分配置：<br>	workgroup = WORKGROUP<br>	server string = Itaotao's Samba Server Version %v<br>	<br>	netbios name = Itaotao<br>	security = user<br>	passdb backend = tdbsam<br>;	interfaces = lo eth0 192.168.12.2/24 192.168.13.2/24 <br>	hosts allow = 127. 192.168.12. 192.168.13. 172.16.43.<br><br>share 部分配置：<br>[HR]<br>	comment = This is a directory HR.<br>	path = /company/HR<br>	public = no<br>	admin users = hradmin<br>	valid users = @hradmin<br>	writable = yes<br>	create mask = 0750<br>	directory mask = 0750<br><br>[FM]<br>	comment = This is a directory FM.<br>	path = /company/FM<br>	public = no<br>	admin users = fmadmin<br>	valid users = @fmadmin<br>	writable = yes<br>	create mask = 0750<br>	directory mask = 0750<br>	browsable = yes<br>	guest ok = yes<br>[Share]<br>	comment = This is a directory Share.<br>	path = /company/Share<br>	public = no<br>	valid users = admin,@fmadmin,@hradmin<br>	writable = yes<br>	create mask = 0750<br>	directory mask = 0750</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3092402,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3092402,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#3178719" class="layer">#26楼</a><a name="3178719" id="comment_anchor_3178719"></a><span id="comment-maxId" style="display:none;">3178719</span><span id="comment-maxDate" style="display:none;">2015/5/8 11:03:50</span>  <span class="comment_date">2015-05-08 11:03</span> <a id="a_comment_author_3178719" href="http://home.cnblogs.com/u/754788/" target="_blank">晏陈三湘</a> <a href="http://msg.cnblogs.com/send/%E6%99%8F%E9%99%88%E4%B8%89%E6%B9%98" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3178719" class="blog_comment_body">很详细，感谢博主！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3178719,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3178719,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" id="lnk_RefreshComments" onclick="return RefreshCommentList();">刷新评论</a><a href="#" onclick="return RefreshPage();">刷新页面</a><a href="#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login('commentform');">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="site_nav_under"><a href="http://www.cnblogs.com/" target="_blank" title="开发者的网上家园">博客园首页</a><a href="http://q.cnblogs.com/" target="_blank" title="程序员问答社区">博问</a><a href="http://news.cnblogs.com/" target="_blank" title="IT新闻">新闻</a><a href="http://home.cnblogs.com/ing/" target="_blank">闪存</a><a href="http://job.cnblogs.com/" target="_blank">程序员招聘</a><a href="http://kb.cnblogs.com/" target="_blank">知识库</a></div>
+<div id="opt_under_post"></div>
+<script type="text/javascript">
+    var enableGoogleAd = canShowAdsense(); 
+    fixPostBodyFormat();
+</script>
+<script type="text/javascript">
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+    (function () {
+        if (enableGoogleAd) {
+            var gads = document.createElement('script');
+            gads.async = true;
+            gads.type = 'text/javascript';
+            var useSSL = 'https:' == document.location.protocol;
+            gads.src = (useSSL ? 'https:' : 'http:') +
+              '//www.googletagservices.com/tag/js/gpt.js';
+            var node = document.getElementsByTagName('script')[0];
+            node.parentNode.insertBefore(gads, node);
+        }
+  })();
+</script>
+<script type="text/javascript">
+    try {
+        if (enableGoogleAd) {
+            googletag.cmd.push(function() {
+            googletag.defineSlot('/1090369/cnblogs_blogpost_C2', [468, 60], 'div-gpt-ad-1433581717989-0').addService(googletag.pubads());
+            googletag.defineSlot('/1090369/cnblogs_blogpost_C1_sitehome', [300, 250], 'div-gpt-ad-1433581717989-1').addService(googletag.pubads());
+            googletag.pubads().enableSingleRequest();
+            googletag.pubads().collapseEmptyDivs();
+            googletag.enableServices();
+            });
+        };
+    } catch (e) { }
+</script>
+<div id="google_ad_c1" class="c_ad_block">
+    <div id="div-gpt-ad-1433581717989-1" style="height:250px; width:300px;">
+    <script type="text/javascript">
+        try {
+            if (enableGoogleAd) {
+                googletag.cmd.push(function () { googletag.display('div-gpt-ad-1433581717989-1'); });
+            } else {
+                $('#div-gpt-ad-1433581717989-1').hide();
+            }
+    } catch (e) { }
+    </script>
+    <div style="border: 0pt none;" id="google_ads_iframe_/1090369/cnblogs_blogpost_C1_sitehome_0__container__"><iframe src="javascript:&quot;<html><body style='background:transparent'></body></html>&quot;" style="border: 0px none; vertical-align: bottom;" marginheight="0" marginwidth="0" scrolling="no" name="google_ads_iframe_/1090369/cnblogs_blogpost_C1_sitehome_0" id="google_ads_iframe_/1090369/cnblogs_blogpost_C1_sitehome_0" frameborder="0" height="250" width="300"></iframe></div><iframe src="javascript:&quot;<html><body style='background:transparent'></body></html>&quot;" style="border: 0px none; vertical-align: bottom; visibility: hidden; display: none;" marginheight="0" marginwidth="0" scrolling="no" name="google_ads_iframe_/1090369/cnblogs_blogpost_C1_sitehome_0__hidden__" id="google_ads_iframe_/1090369/cnblogs_blogpost_C1_sitehome_0__hidden__" frameborder="0" height="0" width="0"></iframe></div>
+</div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/526814/" target="_blank">腾讯财报前瞻：游戏业务推动利润增长</a><br> ·  <a href="http://news.cnblogs.com/n/526813/" target="_blank">关于谷歌重组你需要知道的七件事</a><br> ·  <a href="http://news.cnblogs.com/n/526812/" target="_blank">谷歌佩奇公开信：重组是为了更具活力</a><br> ·  <a href="http://news.cnblogs.com/n/526811/" target="_blank">谷歌重组到底玩什么？激励内部创业</a><br> ·  <a href="http://news.cnblogs.com/n/526810/" target="_blank">三星宣布量产最牛3D闪存：MLC颗粒好评</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="google_ad_c2" class="c_ad_block">
+<div id="div-gpt-ad-1433581717989-0" style="height:60px; width:468px;">
+<script type="text/javascript">
+try {
+    if (enableGoogleAd) {
+        googletag.cmd.push(function () { googletag.display('div-gpt-ad-1433581717989-0'); });
+    } else {
+        $('#div-gpt-ad-1433581717989-0').hide();
+    }
+} catch (e) { }
+</script>
+<div style="border: 0pt none;" id="google_ads_iframe_/1090369/cnblogs_blogpost_C2_0__container__"><iframe src="javascript:&quot;<html><body style='background:transparent'></body></html>&quot;" style="border: 0px none; vertical-align: bottom;" marginheight="0" marginwidth="0" scrolling="no" name="google_ads_iframe_/1090369/cnblogs_blogpost_C2_0" id="google_ads_iframe_/1090369/cnblogs_blogpost_C2_0" frameborder="0" height="60" width="468"></iframe></div></div>
+</div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/526625/" target="_blank">作为码农，我们为什么要写作</a><br> ·  <a href="http://kb.cnblogs.com/page/526474/" target="_blank">今天你写了自动化测试吗</a><br> ·  <a href="http://kb.cnblogs.com/page/524548/" target="_blank">数学和编程</a><br> ·  <a href="http://kb.cnblogs.com/page/173667/" target="_blank">如何在面试中发现优秀程序员</a><br> ·  <a href="http://kb.cnblogs.com/page/525997/" target="_blank">通过心理学知识提高问题定位与解决能力（下）</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+$(function () {
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 200);
+});
+</script>
+</div>
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/mchina/">David_Tang</a><br>园龄：<a href="http://home.cnblogs.com/u/mchina/" title="入园时间：2012-01-17">3年6个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/mchina/followers/">932</a><br>关注：<a href="http://home.cnblogs.com/u/mchina/followees/">3</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="cnblogs.UserManager.FollowBlogger('2e55a023-ab40-e111-9590-842b2b196315')">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="calendar"><div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" title="日历" cellpadding="0" cellspacing="0">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar('2012/11/01');return false;">&lt;</a></td><td align="center">2012年12月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar('2013/01/01');return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" abbr="日" scope="col" align="center">日</th><th class="CalDayHeader" abbr="一" scope="col" align="center">一</th><th class="CalDayHeader" abbr="二" scope="col" align="center">二</th><th class="CalDayHeader" abbr="三" scope="col" align="center">三</th><th class="CalDayHeader" abbr="四" scope="col" align="center">四</th><th class="CalDayHeader" abbr="五" scope="col" align="center">五</th><th class="CalDayHeader" abbr="六" scope="col" align="center">六</th></tr><tr><td class="CalOtherMonthDay" align="center">25</td><td class="CalOtherMonthDay" align="center">26</td><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalWeekendDay" align="center">1</td></tr><tr><td class="CalWeekendDay" align="center">2</td><td align="center">3</td><td align="center">4</td><td align="center">5</td><td align="center">6</td><td align="center">7</td><td class="CalWeekendDay" align="center">8</td></tr><tr><td class="CalWeekendDay" align="center">9</td><td align="center">10</td><td align="center">11</td><td align="center">12</td><td align="center">13</td><td align="center">14</td><td class="CalWeekendDay" align="center">15</td></tr><tr><td class="CalWeekendDay" align="center">16</td><td align="center">17</td><td align="center"><a href="http://www.cnblogs.com/mchina/archive/2012/12/18.html"><u>18</u></a></td><td align="center">19</td><td align="center">20</td><td align="center">21</td><td class="CalWeekendDay" align="center">22</td></tr><tr><td class="CalWeekendDay" align="center">23</td><td align="center"><a href="http://www.cnblogs.com/mchina/archive/2012/12/24.html"><u>24</u></a></td><td align="center">25</td><td align="center">26</td><td align="center">27</td><td align="center">28</td><td class="CalWeekendDay" align="center">29</td></tr><tr><td class="CalWeekendDay" align="center">30</td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk" type="text">&nbsp;<input onclick="zzk_go()" value="找找看" id="btnZzk" class="btn_my_zzk" type="button"></div>
+<div id="widget_my_google" class="div_my_zzk"><input name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk" type="text">&nbsp;<input onclick="google_go()" value="谷歌搜索" class="btn_my_zzk" type="button"></div>
+</div>
+</div>
+
+</div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/mchina/tag/linux/">linux</a>(22)</li><li><a href="http://www.cnblogs.com/mchina/tag/postgresql/">postgresql</a>(22)</li><li><a href="http://www.cnblogs.com/mchina/tag/Packet%20Tracer/">Packet Tracer</a>(15)</li><li><a href="http://www.cnblogs.com/mchina/tag/Oracle%E7%AC%94%E8%AE%B0/">Oracle笔记</a>(14)</li><li><a href="http://www.cnblogs.com/mchina/tag/%E5%BE%AE%E4%BF%A1/">微信</a>(12)</li><li><a href="http://www.cnblogs.com/mchina/tag/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97/">微信公众</a>(11)</li><li><a href="http://www.cnblogs.com/mchina/tag/zhuojinsz/">zhuojinsz</a>(11)</li><li><a href="http://www.cnblogs.com/mchina/tag/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%B9%B3%E5%8F%B0%E5%BC%80%E5%8F%91/">微信公众平台开发</a>(9)</li><li><a href="http://www.cnblogs.com/mchina/tag/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/">微信开发</a>(8)</li><li><a href="http://www.cnblogs.com/mchina/tag/%E5%8D%93%E9%94%A6%E8%8B%8F%E5%B7%9E/">卓锦苏州</a>(6)</li><li><a href="http://www.cnblogs.com/mchina/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div class="catListPostCategory">
+<h3 class="catListTitle">随笔分类<span style="font-size:11px;font-weight:normal">(136)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/mchina/category/381459.html">Linux(20)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/mchina/category/381457.html">Linux Server(17)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/mchina/category/391868.html">Linux Shell(12)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/mchina/category/392129.html">Mysql(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/mchina/category/395111.html">Network(16)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/mchina/category/403734.html">Oracle(19)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/mchina/category/486547.html">PHP(12)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/mchina/category/381458.html">Postgresql(26)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/mchina/category/486546.html">微信开发(12)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catListPostArchive">
+<h3 class="catListTitle">随笔档案<span style="font-size:11px;font-weight:normal">(115)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/mchina/archive/2014/07.html">2014年7月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/mchina/archive/2014/06.html">2014年6月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/mchina/archive/2014/05.html">2014年5月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/mchina/archive/2014/03.html">2014年3月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/mchina/archive/2014/02.html">2014年2月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/mchina/archive/2013/10.html">2013年10月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/mchina/archive/2013/08.html">2013年8月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/mchina/archive/2013/07.html">2013年7月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/mchina/archive/2013/06.html">2013年6月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/mchina/archive/2013/04.html">2013年4月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_10" href="http://www.cnblogs.com/mchina/archive/2013/03.html">2013年3月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_11" href="http://www.cnblogs.com/mchina/archive/2013/02.html">2013年2月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_12" href="http://www.cnblogs.com/mchina/archive/2013/01.html">2013年1月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_13" href="http://www.cnblogs.com/mchina/archive/2012/12.html">2012年12月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_14" href="http://www.cnblogs.com/mchina/archive/2012/11.html">2012年11月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_15" href="http://www.cnblogs.com/mchina/archive/2012/09.html">2012年9月 (16)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_16" href="http://www.cnblogs.com/mchina/archive/2012/08.html">2012年8月 (18)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_17" href="http://www.cnblogs.com/mchina/archive/2012/07.html">2012年7月 (23)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_18" href="http://www.cnblogs.com/mchina/archive/2012/06.html">2012年6月 (9)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_19" href="http://www.cnblogs.com/mchina/archive/2012/05.html">2012年5月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_20" href="http://www.cnblogs.com/mchina/archive/2012/04.html">2012年4月 (1)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catList">
+<h3 class="catListTitle">链接</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_2_Link_0" href="http://hi.baidu.com/new/mchina_tang" rel="nofollow" target="_blank">蘇's 百度</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_1" href="http://blog.163.com/mchina_tang/" rel="nofollow" target="_blank">蘇's 网易</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_2" href="http://blog.sina.com.cn/mchinatang" rel="nofollow" target="_blank">蘇's 新浪</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_scorerank" class="sidebar-block">
+<div class="catListBlogRank">
+<h3 class="catListTitle">积分与排名</h3>
+<ul>
+	<li class="liScore">
+		积分 -	281769
+	</li>
+	<li class="liRank">
+		排名 -	388
+	</li>
+</ul>
+</div>
+
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+	<div id="RecentCommentsBlock"><ul>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/mchina/archive/2013/01/30/2880680.html#3245106">1. Re:linux screen 命令详解</a></li>
+    <li class="recent_comment_body">现在都用tmux了，screen过时了！</li>
+    <li class="recent_comment_author">--Martin2</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/mchina/archive/2012/07/14/2591598.html#3243529">2. Re:Packet Tracer 5.0实验(四) 利用三层交换机实现VLAN间路由</a></li>
+    <li class="recent_comment_body">@Alex-log设置了也还是不通...</li>
+    <li class="recent_comment_author">--jiangsusuzhou</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/mchina/archive/2012/09/07/2651568.html#3237604">3. Re:Oracle笔记（六） 多表查询</a></li>
+    <li class="recent_comment_body">顶一个</li>
+    <li class="recent_comment_author">--youzhibing2904</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/mchina/p/centos-squid-proxy-server.html#3235542">4. Re:CentOS 6.4下Squid代理服务器的安装与配置</a></li>
+    <li class="recent_comment_body">请问博主，如何配置使squid同时支持http https透明代理呢？请指教</li>
+    <li class="recent_comment_author">--linux_person</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/mchina/archive/2013/01/04/2842275.html#3234155">5. Re:CentOS yum 源的配置与使用</a></li>
+    <li class="recent_comment_body">你好 网络yum源的该怎么用ftp进行配置呢？如果不用http的话</li>
+    <li class="recent_comment_author">--abiu</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/mchina/archive/2013/02/20/2883404.html">1. Linux下Nagios的安装与配置(128148)</a></li><li><a href="http://www.cnblogs.com/mchina/archive/2013/01/03/2840040.html">2. Linux NFS服务器的安装与配置(117313)</a></li><li><a href="http://www.cnblogs.com/mchina/archive/2013/06/05/3108618.html">3. 微信公众平台开发（一） 配置接口(106147)</a></li><li><a href="http://www.cnblogs.com/mchina/archive/2013/01/04/2842275.html">4. CentOS yum 源的配置与使用(96984)</a></li><li><a href="http://www.cnblogs.com/mchina/archive/2012/12/18/2816717.html">5. CentOS 6.3下Samba服务器的安装与配置(84318)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/mchina/archive/2013/02/20/2883404.html">1. Linux下Nagios的安装与配置(73)</a></li><li><a href="http://www.cnblogs.com/mchina/archive/2013/06/05/3108618.html">2. 微信公众平台开发（一） 配置接口(57)</a></li><li><a href="http://www.cnblogs.com/mchina/p/3364377.html">3. 微信公众平台开发（十） 消息回复总结(33)</a></li><li><a href="http://www.cnblogs.com/mchina/archive/2012/12/18/2816717.html">4. CentOS 6.3下Samba服务器的安装与配置(26)</a></li><li><a href="http://www.cnblogs.com/mchina/p/3155072.html">5. 微信公众平台开发（四） 简单回复功能开发(22)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/mchina/archive/2013/02/20/2883404.html">1. Linux下Nagios的安装与配置(40)</a></li><li><a href="http://www.cnblogs.com/mchina/archive/2013/06/05/3108618.html">2. 微信公众平台开发（一） 配置接口(38)</a></li><li><a href="http://www.cnblogs.com/mchina/archive/2012/09/07/2651568.html">3. Oracle笔记（六） 多表查询(24)</a></li><li><a href="http://www.cnblogs.com/mchina/archive/2012/12/18/2816717.html">4. CentOS 6.3下Samba服务器的安装与配置(23)</a></li><li><a href="http://www.cnblogs.com/mchina/archive/2013/01/04/2842275.html">5. CentOS yum 源的配置与使用(22)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script><iframe class="hoivbjhakleqcjsosoob" style="visibility: hidden; display: none;" src="CentOS%206.3%E4%B8%8BSamba%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%20-%20David_Tang%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/container.htm"></iframe>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2015 David_Tang
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

@@ -1,0 +1,14 @@
+// 创建分区为raid
+/dev/sdb1
+/dev/sdc1
+
+// 创建阵列raid1
+mdadm -C /dev/md1 -ayes -l1 -n2 /dev/sd[b,c]1
+
+cat /proc/mdstat
+mdadm /dev/md1
+
+df -TH
+
+
+/etc/fstab
