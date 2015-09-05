@@ -106,7 +106,18 @@ smb 服务器用户管理
 |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 useradd username        // 添加一个名为username的用户
 smbpasswd -a username   // 添加一个已有的username到smb
-vi /etc/samba/smb.conf  // 修改smb.conf配置
+
+
+vi /etc/samba/smb.conf            // 修改smb.conf配置
+
+groupadd group1                   // 添加用户组
+usremod -a -G group1 username     // 修改用户所在组
+
+
+chgrp -R group1 filedir/          // 修改文件夹或目录所属组
+chmod 775 fieldir/                // 修改文件夹所在组权限
+ 
+service smbd restart
 
 pdbedit -L              // 查看当前samba服务器中已添加的用户
 

@@ -1,0 +1,30 @@
+// centos7_nginx图片服务器配置
+
+下载Pre-Built Packages的stable version的Centos7
+rpm nginx-***.rpm
+
+yum install nginx
+
+systemctl start nginx 		// 启动
+systemctl enable nginx 		// 配置开机自启
+
+// 文件配置
+// [/etc/nginx/nginx.conf文件里倒数第二句会有 (include /etc/nginx/conf.d/*.conf;) 所以新建conf文件配置图片服务器,另外修改原有defout.conf后缀bak]
+cd /etc/nginx/conf.d
+vim img.conf
+// 内容如下
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+{
+	listen 9090;
+	server_name localhost;
+	charset utf-8;
+	location /img{
+		root /static/;
+		access_log /var/log/nginx/host.img.log;
+		// 浏览器访问 [ip:port/img/1.jpg] 会指向 [/static/img/1.jpg]
+		// 所以 nginx目录下新建文件夹 /user/share/nginx/html/img
+	}
+}
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+nginx -s reload	// 重新加载配置文件
