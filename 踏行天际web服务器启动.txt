@@ -1,0 +1,14 @@
+
+// 1,启动Mysql,防止lampp启动自带mysql服务
+service mysqld start
+
+// 2,启动lampp
+cd /opt/lampp
+./lampp start
+
+// 3,启动go接口
+cd /data/webserver/TX_Cloud/src/cloud_v2
+setsid go run main.go &
+
+// 4,关闭防火墙
+service iptables stop
